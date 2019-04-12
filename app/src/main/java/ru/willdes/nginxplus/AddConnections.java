@@ -28,7 +28,7 @@ public class AddConnections extends AppCompatActivity implements CompoundButton.
     }
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-        Toast.makeText(this, "The Switch is " + (isChecked ? "on" : "off"),Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "The Switch is " + (isChecked ? "on" : "off"),Toast.LENGTH_SHORT).show();
         if (isChecked) {
             final EditText edUser = findViewById(R.id.edUser);
             final EditText edPasswd = findViewById(R.id.edPasswd);

@@ -23,6 +23,8 @@
         <activity android:name=".servers" />
         <activity android:name=".upstreams" />
         <activity android:name=".AddConnections" />
+        <activity android:name=".EditConnections" />
+
         <activity
             android:name=".AllConnections"
             android:label="@string/title_activity_connections"

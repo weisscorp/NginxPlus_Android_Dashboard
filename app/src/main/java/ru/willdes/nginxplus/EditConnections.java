@@ -10,6 +10,8 @@ package ru.willdes.nginxplus;
         import android.widget.Switch;
         import android.widget.Toast;
 
+        import static ru.willdes.nginxplus.nginxplus.*;
+
 public class EditConnections extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener {
 
     db db;
@@ -21,32 +23,60 @@ public class EditConnections extends AppCompatActivity implements CompoundButton
         Intent getintent = getIntent();
         int id = getintent.getIntExtra("id", 0);
         setTitle("Edit " + id);
+        db = new db(this);
         db.open();
         Cursor cursor = db.getConnWhereId(id);
-
-
-
+        cursor.moveToFirst();
         Switch s = findViewById(R.id.auth);
+
+        EditText displayName = findViewById(R.id.displayName);
+        EditText edAddress = findViewById(R.id.edAddress);
+        EditText edPort = findViewById(R.id.edPort);
+        EditText edUser = findViewById(R.id.edUser);
+        EditText edPasswd = findViewById(R.id.edPasswd);
+
+        String conAddr = cursor.getString(cursor.getColumnIndex(COLUMN_ADDRESS));
+        String conPort = cursor.getString(cursor.getColumnIndex(COLUMN_PORT));
+        String conUser = cursor.getString(cursor.getColumnIndex(COLUMN_USER));
+        String conPasswd = cursor.getString(cursor.getColumnIndex(COLUMN_PASSWD));
+        String conName = cursor.getString(cursor.getColumnIndex(COLUMN_NAME));
+
+        displayName.setText(conName);
+        edAddress.setText(conAddr);
+        edPort.setText(conPort);
+        if (conUser == "none") {
+            s.setChecked(false);
+
+        }else {
+            s.setChecked(true);
+            edUser.setFocusable(true);
+            edUser.setEnabled(true);
+            edUser.setCursorVisible(true);
+            edPasswd.setFocusable(true);
+            edPasswd.setEnabled(true);
+            edPasswd.setCursorVisible(true);
+            edUser.setText(conUser);
+            edPasswd.setText(conPasswd);
+        }
+
 
         if (s != null) {
             s.setOnCheckedChangeListener(this);
         }
-
+        db.close();
     }
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-        Toast.makeText(this, "The Switch is " + (isChecked ? "on" : "off"),Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "The Switch is " + (isChecked ? "on" : "off"),Toast.LENGTH_SHORT).show();
         if (isChecked) {
             final EditText edUser = findViewById(R.id.edUser);
             final EditText edPasswd = findViewById(R.id.edPasswd);
             edUser.setFocusable(true);
             edUser.setEnabled(true);
             edUser.setCursorVisible(true);
-            edUser.setText("");
             edPasswd.setFocusable(true);
             edPasswd.setEnabled(true);
             edPasswd.setCursorVisible(true);
-            edPasswd.setText("");
 
         } else {
             final EditText edUser = findViewById(R.id.edUser);
@@ -63,6 +93,8 @@ public class EditConnections extends AppCompatActivity implements CompoundButton
     }
 
     public void addNewServer(View view) {
+        Intent getintent = getIntent();
+        int id = getintent.getIntExtra("id", 0);
         EditText displayName = findViewById(R.id.displayName);
         EditText edAddress = findViewById(R.id.edAddress);
         EditText edPort = findViewById(R.id.edPort);

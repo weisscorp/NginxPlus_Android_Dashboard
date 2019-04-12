@@ -161,16 +161,16 @@ public class db {
     public void delRec(int id) {
 
         //нужно получить айди всех апстримов, по ним удалить сервера и удалить сами апстримы
-        Cursor cursor = mDB.query(TABLE_UPSTREAMS, new String[] {COLUMN_ID}, COLUMN_IDCONN + " = " + id, null, null, null, null);
-        if (cursor.getCount() != 0) {
-            cursor.moveToFirst();
-            do {
-                int idupstr = cursor.getInt(cursor.getColumnIndex("id"));
-                mDB.delete(TABLE_SERVERS, COLUMN_IDUPSTR + " = " + idupstr, null);
-            } while (cursor.moveToNext());
-        }
         mDB.delete(TABLE_UPSTREAMS, COLUMN_IDCONN + " = " + id, null);
         mDB.delete(TABLE_NAME, "id = " + id, null);
+    }
+
+    public void delRecUpstream(int id) {
+        mDB.delete(TABLE_UPSTREAMS, COLUMN_IDCONN + " = " + id, null);
+    }
+
+    public void delRecServers(int idupstr) {
+        mDB.delete(TABLE_SERVERS, COLUMN_IDUPSTR + " = " + idupstr, null);
     }
 
     public Cursor getConnWhereId(int id) {

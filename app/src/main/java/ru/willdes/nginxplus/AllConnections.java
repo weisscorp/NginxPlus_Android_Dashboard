@@ -17,9 +17,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import static ru.willdes.nginxplus.nginxplus.COLUMN_ADDRESS;
+import static ru.willdes.nginxplus.nginxplus.COLUMN_ID;
 import static ru.willdes.nginxplus.nginxplus.COLUMN_NAME;
 import static ru.willdes.nginxplus.nginxplus.COLUMN_PASSWD;
 import static ru.willdes.nginxplus.nginxplus.COLUMN_PORT;
@@ -112,7 +112,14 @@ public class AllConnections extends AppCompatActivity {
 
     public void function1(int id){
         db.open();
+        Cursor cursor = db.getAllDataFromUpstreamsByServerId(id);
+        cursor.moveToFirst();
+        do {
+            int idupstr = cursor.getInt(cursor.getColumnIndex(COLUMN_ID));
+            db.delRecServers(idupstr);
+        }while (cursor.moveToNext());
         db.delRec(id);
+        db.delRecUpstream(id);
         db.close();
         finish();
         Intent i = new Intent( this , this.getClass() );
@@ -121,9 +128,6 @@ public class AllConnections extends AppCompatActivity {
     public void function2(int id){
         Intent intent = new Intent(this, EditConnections.class);
         startActivity(intent.putExtra("id", id));
-
-
-        Toast.makeText(this, "надо как то отредактировать " +id, Toast.LENGTH_SHORT).show();
     }
 
     @Override
