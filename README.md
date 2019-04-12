@@ -1,1 +1,2 @@
-# NginxPlus_Android_Dashboard
+# Andriod application for NginxPlus
+Now in development
