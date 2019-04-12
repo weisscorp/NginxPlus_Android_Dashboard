@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#448A1F</color>
+    <color name="colorPrimaryDark">#C5C5C5</color>
+    <color name="colorAccent">#448A1F</color>
+    <color name="colorDrain">#067DF1</color>
+    <color name="colorDrainPressed">#033768</color>
+    <color name="colorUp">#448A1F</color>
+    <color name="colorUpPressed">#172E0A</color>
+    <color name="colorRemove">#A31515</color>
+    <color name="Black">#000000</color>
+    <color name="colorGray">#FFFFFF</color>
+    <color name="colorGray1">#E0E4E6</color>
+    <color name="colorGrayLight">#448A1F</color>
+    <color name="colorBackgound">#FFFFFF</color>
+    <color name="colorDown">#E0E4E6</color>
+    <color name="colorDownPressed">#7A7A7A</color>
+</resources>

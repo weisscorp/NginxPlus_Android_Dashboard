@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/LLserveritem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:id="@+id/srvname"
+            android:textColor="@color/Black"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="center"
+            android:text="имя сервера"
+            android:textSize="13sp"
+            android:background="@color/colorBackgound"/>
+
+
+        <LinearLayout
+            android:id="@+id/LLbtns"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@color/colorBackgound">
+
+            <ImageView
+                android:id="@+id/ivStat"
+                android:layout_width="16dp"
+                android:layout_height="match_parent"
+                android:src="@color/colorDrain">
+
+            </ImageView>
+
+            <LinearLayout
+                android:id="@+id/LLactive"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@color/colorBackgound">
+
+            <TextView
+                android:id="@+id/twActive"
+                android:textColor="@color/Black"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="Active" />
+            <TextView
+                android:id="@+id/twRequests"
+                android:textColor="@color/Black"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="Requests" />
+            </LinearLayout>
+            <ImageButton
+                android:id="@+id/ibUp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/srv_action_up"
+                android:background="@drawable/button_up"/>
+
+            <ImageButton
+                android:id="@+id/ibDown"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/srv_action_stop"
+                android:background="@drawable/button_down"/>
+
+            <ImageButton
+                android:id="@+id/ibDrain"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/srv_action_drain"
+                android:background="@drawable/button_drain"/>
+
+
+        </LinearLayout>
+    </LinearLayout>

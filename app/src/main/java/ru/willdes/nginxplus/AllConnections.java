@@ -1,0 +1,138 @@
+package ru.willdes.nginxplus;
+
+import android.content.Intent;
+import android.database.Cursor;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.util.TypedValue;
+import android.view.ContextMenu;
+import android.view.Gravity;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import static ru.willdes.nginxplus.nginxplus.COLUMN_ADDRESS;
+import static ru.willdes.nginxplus.nginxplus.COLUMN_NAME;
+import static ru.willdes.nginxplus.nginxplus.COLUMN_PASSWD;
+import static ru.willdes.nginxplus.nginxplus.COLUMN_PORT;
+import static ru.willdes.nginxplus.nginxplus.COLUMN_USER;
+
+public class AllConnections extends AppCompatActivity {
+    db db;
+    final String LOG_TAG = "myLogs";
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_connections);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        LinearLayout linearLayout = findViewById(R.id.allconnections);
+
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AllConnections.this, AddConnections.class);
+                startActivityForResult(intent, 1);
+            }
+        });
+        db = new db(this);
+        db.open();
+        final Cursor cur = db.getAllDataFromConnections();
+        if (cur.getCount() == 0) {
+            TextView textView = new TextView(this);
+            textView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+            textView.setGravity(Gravity.CENTER);
+            textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(R.dimen.result_font));
+            textView.setText(R.string.empty_servers);
+            linearLayout.addView(textView);
+        } else {
+            cur.moveToFirst();
+            do {
+                LinearLayout.LayoutParams lParam = new LinearLayout.LayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+                Button button = new Button(this);
+                button.setGravity(Gravity.CENTER);
+                final String connname = cur.getString(cur.getColumnIndex(COLUMN_NAME));
+                button.setText(connname);
+                button.setBackgroundResource(R.drawable.round_button);
+                final int _id = cur.getInt(cur.getColumnIndex("id"));
+                final String conAddr = cur.getString(cur.getColumnIndex(COLUMN_ADDRESS));
+                final String conPort = cur.getString(cur.getColumnIndex(COLUMN_PORT));
+                final String conUser = cur.getString(cur.getColumnIndex(COLUMN_USER));
+                final String conPasswd = cur.getString(cur.getColumnIndex(COLUMN_PASSWD));
+                button.setId(_id);
+                linearLayout.addView(button, lParam);
+                final View btn1 = findViewById(_id);
+                registerForContextMenu(btn1);
+                final Intent intent = new Intent(this, upstreams.class);
+                final Intent startserv = new Intent(this, getJson.class);
+                btn1.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View view) {
+                        ServerConnection.getInstance().setIdconn(_id);
+                        ServerConnection.getInstance().setIpaddr(conAddr);
+                        ServerConnection.getInstance().setPort(conPort);
+                        ServerConnection.getInstance().setUser(conUser);
+                        ServerConnection.getInstance().setPassword(conPasswd);
+                        startActivity(intent.putExtra("connname", connname));
+                        startService(startserv.putExtra("id", _id));
+
+                        Log.d(LOG_TAG, "Start Service getJson");
+                    }
+                });
+            } while (cur.moveToNext());
+            cur.close();
+            db.close();
+        }
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        menu.setHeaderTitle("Что сделать?");
+        menu.add(0, v.getId(), 0, "Удалить");
+        menu.add(0, v.getId(), 0, "Редактировать");
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        if(item.getTitle()=="Удалить"){function1(item.getItemId());}
+        else if(item.getTitle()=="Редактировать"){function2(item.getItemId());}
+        else {return false;}
+        return true;
+    }
+
+    public void function1(int id){
+        db.open();
+        db.delRec(id);
+        db.close();
+        finish();
+        Intent i = new Intent( this , this.getClass() );
+        this.startActivity(i);
+    }
+    public void function2(int id){
+        Intent intent = new Intent(this, EditConnections.class);
+        startActivity(intent.putExtra("id", id));
+
+
+        Toast.makeText(this, "надо как то отредактировать " +id, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        finish();
+        Intent i = new Intent( this , this.getClass() );
+        this.startActivity(i);
+
+    }
+}
+

@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Nginx Plus</string>
+    <string name="title_activity_connections">Nginx Plus</string>
+    <string name="ip_or_hostname">IP or Hostname:</string>
+    <string name="port">Port:</string>
+    <string name="_8080">8080</string>
+    <string name="authentification">Авторизация</string>
+    <string name="password">Пароль</string>
+    <string name="back">Назад</string>
+    <string name="saveSrv">Сохранить</string>
+    <string name="user">Пользователь</string>
+    <string name="DisplayName">Выводимое имя</string>
+    <string name="empty_servers">Нет доступных серверов</string>
+    <string name="empty_upstreams">Нет доступных Upstreams</string>
+
+
+</resources>
