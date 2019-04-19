@@ -57,6 +57,7 @@ public class getJson extends IntentService {
                         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
                             String basicAuth = Base64.getEncoder().encodeToString((user + ":" + passwd).getBytes(StandardCharsets.UTF_8));
                             connection.setRequestProperty("Authorization", "Basic " + basicAuth);
+                            connection.setRequestProperty("Cookie", "nginxauth=" + basicAuth);
                         }
                     }
                     connection.connect();
