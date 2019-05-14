@@ -79,9 +79,6 @@ public class servers extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        //finish();
-        //Intent i = new Intent( this , this.getClass() );
-        //this.startActivity(i);
     }
 
     public void action_refresh(MenuItem item) {
