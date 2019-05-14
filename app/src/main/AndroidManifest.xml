@@ -20,7 +20,8 @@
             android:enabled="true"
             android:exported="false"></service>
 
-        <activity android:name=".servers" />
+        <activity android:name=".servers"
+                  android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".upstreams" />
         <activity android:name=".AddConnections" />
         <activity android:name=".EditConnections" />
