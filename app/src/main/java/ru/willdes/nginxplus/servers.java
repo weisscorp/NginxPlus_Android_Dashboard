@@ -46,10 +46,6 @@ public class servers extends AppCompatActivity {
         db.close();
 
     }
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
 
     public void action_refresh(MenuItem item) {
         create_servers();
