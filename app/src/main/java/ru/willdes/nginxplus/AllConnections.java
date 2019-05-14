@@ -97,17 +97,17 @@ public class AllConnections extends AppCompatActivity {
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
-        menu.setHeaderTitle("Что сделать?");
-        menu.add(0, v.getId(), 0, "Удалить");
+        menu.setHeaderTitle("Nginx сервер");
         menu.add(0, v.getId(), 0, "Редактировать");
         menu.add(0, v.getId(), 0, "Дублировать");
+        menu.add(0, v.getId(), 0, "Удалить");
     }
 
     @Override
     public boolean onContextItemSelected(MenuItem item) {
-        if(item.getTitle()=="Удалить"){delete(item.getItemId());}
-        else if(item.getTitle()=="Редактировать"){edit(item.getItemId());}
+        if(item.getTitle()=="Редактировать"){edit(item.getItemId());}
         else if(item.getTitle()=="Дублировать"){dublicate(item.getItemId());}
+        else if(item.getTitle()=="Удалить"){delete(item.getItemId());}
         else {return false;}
         return true;
     }
