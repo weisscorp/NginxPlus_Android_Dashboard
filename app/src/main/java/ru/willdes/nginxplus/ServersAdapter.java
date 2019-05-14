@@ -1,5 +1,6 @@
 package ru.willdes.nginxplus;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -33,6 +34,7 @@ public class ServersAdapter extends RecyclerView.Adapter<ServersAdapter.ServersV
         return new ServersViewHolder(view);
     }
 
+    @SuppressLint("ResourceAsColor")
     @Override
     public void onBindViewHolder(@NonNull final ServersViewHolder serversViewHolder, final int i) {
         Log.d(TAG, "onBindViewHolder: called.");
@@ -40,6 +42,11 @@ public class ServersAdapter extends RecyclerView.Adapter<ServersAdapter.ServersV
         //final String upstrname = UpstreamName.getUpstreamName().getUpstrname();
 
         serversViewHolder.srvname.setText(temp.getName());
+        if (temp.getActive()>4 && temp.getRequests()==0) {
+            serversViewHolder.srvname.setBackgroundColor(R.color.orange);
+            serversViewHolder.twActive.setBackgroundColor(R.color.orange);
+            serversViewHolder.twRequests.setBackgroundColor(R.color.orange);
+        }
         serversViewHolder.twActive.setText(""+temp.getActive());
         serversViewHolder.twRequests.setText(""+temp.getRequests());
 
