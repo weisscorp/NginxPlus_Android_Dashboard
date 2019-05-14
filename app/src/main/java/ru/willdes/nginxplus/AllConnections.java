@@ -100,34 +100,44 @@ public class AllConnections extends AppCompatActivity {
         menu.setHeaderTitle("Что сделать?");
         menu.add(0, v.getId(), 0, "Удалить");
         menu.add(0, v.getId(), 0, "Редактировать");
+        menu.add(0, v.getId(), 0, "Дублировать");
     }
 
     @Override
     public boolean onContextItemSelected(MenuItem item) {
-        if(item.getTitle()=="Удалить"){function1(item.getItemId());}
-        else if(item.getTitle()=="Редактировать"){function2(item.getItemId());}
+        if(item.getTitle()=="Удалить"){delete(item.getItemId());}
+        else if(item.getTitle()=="Редактировать"){edit(item.getItemId());}
+        else if(item.getTitle()=="Дублировать"){dublicate(item.getItemId());}
         else {return false;}
         return true;
     }
 
-    public void function1(int id){
+    public void delete(int id){
         db.open();
         Cursor cursor = db.getAllDataFromUpstreamsByServerId(id);
         cursor.moveToFirst();
-        do {
-            int idupstr = cursor.getInt(cursor.getColumnIndex(COLUMN_ID));
-            db.delRecServers(idupstr);
-        }while (cursor.moveToNext());
+        if (cursor.getCount() != 0) {
+            do {
+                int idupstr = cursor.getInt(cursor.getColumnIndex(COLUMN_ID));
+                db.delRecServers(idupstr);
+            } while (cursor.moveToNext());
+            db.delRecUpstream(id);
+        }
         db.delRec(id);
-        db.delRecUpstream(id);
         db.close();
         finish();
         Intent i = new Intent( this , this.getClass() );
         this.startActivity(i);
     }
-    public void function2(int id){
+    public void edit(int id){
         Intent intent = new Intent(this, EditConnections.class);
-        startActivity(intent.putExtra("id", id));
+        startActivityForResult(intent.putExtra("id", id), 1);
+
+    }
+
+    public void dublicate(int id){
+        Intent intent = new Intent(this, DubConnections.class);
+        startActivityForResult(intent.putExtra("id", id), 1);
     }
 
     @Override

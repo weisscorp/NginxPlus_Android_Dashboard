@@ -25,6 +25,7 @@
         <activity android:name=".upstreams" />
         <activity android:name=".AddConnections" />
         <activity android:name=".EditConnections" />
+        <activity android:name=".DubConnections" />
 
         <activity
             android:name=".AllConnections"
