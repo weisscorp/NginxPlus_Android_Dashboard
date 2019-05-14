@@ -9,6 +9,6 @@
 * Add opportunity edit connection to nginx
 
 
-##Bugs
+## Bugs
 * there is no autorefresh
 * the service does not terminate upon exiting the connection and is restarted upon entering the connection
