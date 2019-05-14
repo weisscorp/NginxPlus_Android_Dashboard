@@ -15,4 +15,5 @@
     <color name="colorBackgound">#FFFFFF</color>
     <color name="colorDown">#E0E4E6</color>
     <color name="colorDownPressed">#7A7A7A</color>
+    <color name="orange">#FF6D00</color>
 </resources>
