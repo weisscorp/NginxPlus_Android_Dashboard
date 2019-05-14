@@ -1,12 +1,16 @@
 package ru.willdes.nginxplus;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.TypedValue;
 import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -24,10 +28,17 @@ public class servers extends AppCompatActivity {
     db db;
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_activity_servers, menu);
+        return true;
+    }
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_servers);
         final int idupstr = UpstreamName.getUpstreamName().getIdupstr();
+        Toolbar mActionBarToolbar = findViewById(R.id.toolbar_actionbar);
+        setSupportActionBar(mActionBarToolbar);
         setTitle(UpstreamName.getUpstreamName().getUpstrname());
         RecyclerView recyclerView = findViewById(R.id.recyclerview);
             db = new db(this);
@@ -59,12 +70,24 @@ public class servers extends AppCompatActivity {
             }
             db.close();
     }
-
+    @Override
     protected void onDestroy() {
         super.onDestroy();
         db.close();
 
     }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        //finish();
+        //Intent i = new Intent( this , this.getClass() );
+        //this.startActivity(i);
+    }
 
+    public void action_refresh(MenuItem item) {
+        finish();
+        Intent i = new Intent( this , this.getClass() );
+        this.startActivity(i);
+    }
 }
 
