@@ -1,6 +1,5 @@
 package ru.willdes.nginxplus;
 
-import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -36,39 +35,10 @@ public class servers extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_servers);
-        final int idupstr = UpstreamName.getUpstreamName().getIdupstr();
         Toolbar mActionBarToolbar = findViewById(R.id.toolbar_actionbar);
         setSupportActionBar(mActionBarToolbar);
         setTitle(UpstreamName.getUpstreamName().getUpstrname());
-        RecyclerView recyclerView = findViewById(R.id.recyclerview);
-            db = new db(this);
-            db.open();
-            Cursor serverscur = db.getAllDataFromServersByIdupstr(idupstr);
-            List<ServersModel> list = new ArrayList<>();
-            if (serverscur.getCount() == 0) {
-                LinearLayout linearLayout = findViewById(R.id.linearlayoutServers);
-                TextView textView = new TextView(this);
-                textView.setGravity(Gravity.CENTER);
-                textView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-                textView.setGravity(Gravity.CENTER);
-                textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(R.dimen.result_font));
-                textView.setText(R.string.empty_servers);
-                linearLayout.addView(textView);
-            } else {
-                serverscur.moveToFirst();
-                do {
-                    String name = serverscur.getString(serverscur.getColumnIndex(COLUMN_SERVER));
-                    String state = serverscur.getString(serverscur.getColumnIndex(COLUMN_STATE));
-                    int active = serverscur.getInt(serverscur.getColumnIndex(COLUMN_ACTIVE));
-                    int requests = serverscur.getInt(serverscur.getColumnIndex(COLUMN_REQPSEC));
-                    ServersModel item = new ServersModel(name, state, active, requests);
-                    list.add(item);
-                } while (serverscur.moveToNext());
-                ServersAdapter adapter = new ServersAdapter(this, list);
-                recyclerView.setLayoutManager(new LinearLayoutManager(this));
-                recyclerView.setAdapter(adapter);
-            }
-            db.close();
+        create_servers();
     }
     @Override
     protected void onDestroy() {
@@ -82,9 +52,40 @@ public class servers extends AppCompatActivity {
     }
 
     public void action_refresh(MenuItem item) {
-        finish();
-        Intent i = new Intent( this , this.getClass() );
-        this.startActivity(i);
+        create_servers();
+    }
+
+    private void create_servers(){
+        final int idupstr = UpstreamName.getUpstreamName().getIdupstr();
+        RecyclerView recyclerView = findViewById(R.id.recyclerview);
+        db = new db(this);
+        db.open();
+        Cursor serverscur = db.getAllDataFromServersByIdupstr(idupstr);
+        List<ServersModel> list = new ArrayList<>();
+        if (serverscur.getCount() == 0) {
+            LinearLayout linearLayout = findViewById(R.id.linearlayoutServers);
+            TextView textView = new TextView(this);
+            textView.setGravity(Gravity.CENTER);
+            textView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+            textView.setGravity(Gravity.CENTER);
+            textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(R.dimen.result_font));
+            textView.setText(R.string.empty_servers);
+            linearLayout.addView(textView);
+        } else {
+            serverscur.moveToFirst();
+            do {
+                String name = serverscur.getString(serverscur.getColumnIndex(COLUMN_SERVER));
+                String state = serverscur.getString(serverscur.getColumnIndex(COLUMN_STATE));
+                int active = serverscur.getInt(serverscur.getColumnIndex(COLUMN_ACTIVE));
+                int requests = serverscur.getInt(serverscur.getColumnIndex(COLUMN_REQPSEC));
+                ServersModel item = new ServersModel(name, state, active, requests);
+                list.add(item);
+            } while (serverscur.moveToNext());
+            ServersAdapter adapter = new ServersAdapter(this, list);
+            recyclerView.setLayoutManager(new LinearLayoutManager(this));
+            recyclerView.setAdapter(adapter);
+        }
+        db.close();
     }
 }
 
