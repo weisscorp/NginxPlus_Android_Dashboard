@@ -22,6 +22,26 @@ android {
             {
                 enabled = true
             }
+    signingConfigs {
+        debug { /* здесь никаких изменений нет */ }
+        release {
+            if (project.hasProperty("Keys.repo")) {
+                def projectPropsFile = file(project.property("Keys.repo") + "/NginxPlus_Android_Dashboard.properties")
+                if (projectPropsFile.exists()) {
+                    Properties props = new Properties()
+                    props.load(new FileInputStream(projectPropsFile))
+                    storeFile file(file(project.property("Keys.repo") + props['RELEASE_STORE_FILE']))
+                    storePassword props['RELEASE_STORE_PASS']
+                    keyAlias props['RELEASE_ALIAS']
+                    keyPassword props['RELEASE_KEY_PASS']
+                }
+            } else {
+                println "======================================================="
+                println "[ERROR] - Please configure release-compilation environment - e.g. in ~/.signing directory"
+                println "======================================================="
+            }
+        }
+    }
 }
 
 dependencies {
