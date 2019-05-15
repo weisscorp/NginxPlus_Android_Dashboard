@@ -47,6 +47,18 @@ public class servers extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onRestart(){
+        super.onRestart();
+        create_servers();
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+        create_servers();
+    }
+
     public void action_refresh(MenuItem item) {
         create_servers();
     }
@@ -80,6 +92,7 @@ public class servers extends AppCompatActivity {
             ServersAdapter adapter = new ServersAdapter(this, list);
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
             recyclerView.setAdapter(adapter);
+            //adapter.notifyDataSetChanged();
         }
         db.close();
     }
