@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.Menu;
@@ -28,6 +29,7 @@ public class servers extends AppCompatActivity {
     List<ServersModel> list = new ArrayList<>();
     ServersAdapter adapter = new ServersAdapter(this, list);
     final int idupstr = UpstreamName.getUpstreamName().getIdupstr();
+    Thread t;
 
 
     @Override
@@ -43,30 +45,40 @@ public class servers extends AppCompatActivity {
         Toolbar mActionBarToolbar = findViewById(R.id.toolbar_actionbar);
         setSupportActionBar(mActionBarToolbar);
         setTitle(UpstreamName.getUpstreamName().getUpstrname());
-        //create_servers();
+        create_servers();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         //db.close();
-
+        if (t != null) {
+        t.interrupt();}
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
-        create_servers();
+        if (t == null){refresh_servers();}
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        create_servers();
+        if (t == null){
+            Log.d("onResume","start");
+            refresh_servers();}
+
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (t != null) {
+            t.interrupt();}
     }
 
     public void action_refresh(MenuItem item) {
-        update_servers();
+        refresh_servers();
     }
 
     private void create_servers() {
@@ -111,13 +123,31 @@ public class servers extends AppCompatActivity {
             int active = serverscur.getInt(serverscur.getColumnIndex(COLUMN_ACTIVE));
             int requests = serverscur.getInt(serverscur.getColumnIndex(COLUMN_REQPSEC));
             ServersModel item = new ServersModel(name, state, active, requests);
-            list.remove(pos);
-            list.add(pos, item);
+            //list.remove(pos);
+            list.set(pos, item);
             pos++;
             } while (serverscur.moveToNext()) ;
         adapter.notifyDataSetChanged();
         db.close();
     }
 
-    
+    public void refresh_servers() {
+        if (t != null) {
+            t.interrupt();}
+        t = new Thread(){
+            @Override public void run(){
+                try{
+                    while (!isInterrupted()) {
+                        Thread.sleep(1000);
+                        runOnUiThread(new Runnable() {
+                            @Override public void run() {
+                                update_servers();
+                            }
+                        });
+                    }
+                } catch (InterruptedException e) { }
+            } };
+        t.start();
+    }
+
 }
