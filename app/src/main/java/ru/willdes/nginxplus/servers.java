@@ -23,8 +23,13 @@ import static ru.willdes.nginxplus.nginxplus.COLUMN_SERVER;
 import static ru.willdes.nginxplus.nginxplus.COLUMN_STATE;
 
 public class servers extends AppCompatActivity {
-    final String LOG_TAG = "servers";
     db db;
+    final String LOG_TAG = "servers";
+    RecyclerView recyclerView = findViewById(R.id.recyclerview);
+    List<ServersModel> list = new ArrayList<>();
+    ServersAdapter adapter = new ServersAdapter(this, list);
+    final int idupstr = UpstreamName.getUpstreamName().getIdupstr();
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -60,26 +65,14 @@ public class servers extends AppCompatActivity {
     }
 
     public void action_refresh(MenuItem item) {
-        create_servers();
+        update_servers();
     }
 
-    private void create_servers(){
-        final int idupstr = UpstreamName.getUpstreamName().getIdupstr();
-        RecyclerView recyclerView = findViewById(R.id.recyclerview);
-        db = new db(this);
+    private void create_servers() {
+        db db = new db(this);
         db.open();
         Cursor serverscur = db.getAllDataFromServersByIdupstr(idupstr);
-        List<ServersModel> list = new ArrayList<>();
-        if (serverscur.getCount() == 0) {
-            LinearLayout linearLayout = findViewById(R.id.linearlayoutServers);
-            TextView textView = new TextView(this);
-            textView.setGravity(Gravity.CENTER);
-            textView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-            textView.setGravity(Gravity.CENTER);
-            textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(R.dimen.result_font));
-            textView.setText(R.string.empty_servers);
-            linearLayout.addView(textView);
-        } else {
+        if (serverscur.getCount() != 0) {
             serverscur.moveToFirst();
             do {
                 String name = serverscur.getString(serverscur.getColumnIndex(COLUMN_SERVER));
@@ -89,12 +82,36 @@ public class servers extends AppCompatActivity {
                 ServersModel item = new ServersModel(name, state, active, requests);
                 list.add(item);
             } while (serverscur.moveToNext());
-            ServersAdapter adapter = new ServersAdapter(this, list);
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
             recyclerView.setAdapter(adapter);
-            //adapter.notifyDataSetChanged();
+        } else {
+            LinearLayout linearLayout = findViewById(R.id.linearlayoutServers);
+            TextView textView = new TextView(this);
+            textView.setGravity(Gravity.CENTER);
+            textView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+            textView.setGravity(Gravity.CENTER);
+            textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(R.dimen.result_font));
+            textView.setText(R.string.empty_servers);
+            linearLayout.addView(textView);
         }
         db.close();
     }
+        private void update_servers() {
+            db db = new db(this);
+            db.open();
+            Cursor serverscur = db.getAllDataFromServersByIdupstr(idupstr);
+            serverscur.moveToFirst();
+            do {
+                String name = serverscur.getString(serverscur.getColumnIndex(COLUMN_SERVER));
+                String state = serverscur.getString(serverscur.getColumnIndex(COLUMN_STATE));
+                int active = serverscur.getInt(serverscur.getColumnIndex(COLUMN_ACTIVE));
+                int requests = serverscur.getInt(serverscur.getColumnIndex(COLUMN_REQPSEC));
+                ServersModel item = new ServersModel(name, state, active, requests);
+                list.add(item);
+            } while (serverscur.moveToNext());
+            recyclerView.setLayoutManager(new LinearLayoutManager(this));
+            recyclerView.setAdapter(adapter);
+            adapter.notifyDataSetChanged();
+            db.close();
+        }
 }
-
