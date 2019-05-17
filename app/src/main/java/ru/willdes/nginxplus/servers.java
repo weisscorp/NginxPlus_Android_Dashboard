@@ -25,7 +25,6 @@ import static ru.willdes.nginxplus.nginxplus.COLUMN_STATE;
 public class servers extends AppCompatActivity {
     db db;
     final String LOG_TAG = "servers";
-    RecyclerView recyclerView = findViewById(R.id.recyclerview);
     List<ServersModel> list = new ArrayList<>();
     ServersAdapter adapter = new ServersAdapter(this, list);
     final int idupstr = UpstreamName.getUpstreamName().getIdupstr();
@@ -36,6 +35,7 @@ public class servers extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_activity_servers, menu);
         return true;
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,23 +43,24 @@ public class servers extends AppCompatActivity {
         Toolbar mActionBarToolbar = findViewById(R.id.toolbar_actionbar);
         setSupportActionBar(mActionBarToolbar);
         setTitle(UpstreamName.getUpstreamName().getUpstrname());
-        create_servers();
+        //create_servers();
     }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        db.close();
+        //db.close();
 
     }
 
     @Override
-    protected void onRestart(){
+    protected void onRestart() {
         super.onRestart();
         create_servers();
     }
 
     @Override
-    protected void onResume(){
+    protected void onResume() {
         super.onResume();
         create_servers();
     }
@@ -72,6 +73,7 @@ public class servers extends AppCompatActivity {
         db db = new db(this);
         db.open();
         Cursor serverscur = db.getAllDataFromServersByIdupstr(idupstr);
+        RecyclerView recyclerView = findViewById(R.id.recyclerview);
         if (serverscur.getCount() != 0) {
             serverscur.moveToFirst();
             do {
@@ -84,6 +86,7 @@ public class servers extends AppCompatActivity {
             } while (serverscur.moveToNext());
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
             recyclerView.setAdapter(adapter);
+            db.close();
         } else {
             LinearLayout linearLayout = findViewById(R.id.linearlayoutServers);
             TextView textView = new TextView(this);
@@ -94,24 +97,27 @@ public class servers extends AppCompatActivity {
             textView.setText(R.string.empty_servers);
             linearLayout.addView(textView);
         }
+    }
+
+    public void update_servers() {
+        db db = new db(this);
+        db.open();
+        Cursor serverscur = db.getAllDataFromServersByIdupstr(idupstr);
+        serverscur.moveToFirst();
+        int pos = 0;
+        do {
+            final String name = serverscur.getString(serverscur.getColumnIndex(COLUMN_SERVER));
+            String state = serverscur.getString(serverscur.getColumnIndex(COLUMN_STATE));
+            int active = serverscur.getInt(serverscur.getColumnIndex(COLUMN_ACTIVE));
+            int requests = serverscur.getInt(serverscur.getColumnIndex(COLUMN_REQPSEC));
+            ServersModel item = new ServersModel(name, state, active, requests);
+            list.remove(pos);
+            list.add(pos, item);
+            pos++;
+            } while (serverscur.moveToNext()) ;
+        adapter.notifyDataSetChanged();
         db.close();
     }
-        private void update_servers() {
-            db db = new db(this);
-            db.open();
-            Cursor serverscur = db.getAllDataFromServersByIdupstr(idupstr);
-            serverscur.moveToFirst();
-            do {
-                String name = serverscur.getString(serverscur.getColumnIndex(COLUMN_SERVER));
-                String state = serverscur.getString(serverscur.getColumnIndex(COLUMN_STATE));
-                int active = serverscur.getInt(serverscur.getColumnIndex(COLUMN_ACTIVE));
-                int requests = serverscur.getInt(serverscur.getColumnIndex(COLUMN_REQPSEC));
-                ServersModel item = new ServersModel(name, state, active, requests);
-                list.add(item);
-            } while (serverscur.moveToNext());
-            recyclerView.setLayoutManager(new LinearLayoutManager(this));
-            recyclerView.setAdapter(adapter);
-            adapter.notifyDataSetChanged();
-            db.close();
-        }
+
+    
 }
