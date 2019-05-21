@@ -63,6 +63,7 @@ public class POSTtoServer {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     String basicAuth = Base64.getEncoder().encodeToString((user + ":" + password).getBytes(StandardCharsets.UTF_8));
                     httpcon.setRequestProperty("Authorization", "Basic " + basicAuth);
+                    httpcon.setRequestProperty("Cookie", "nginxauth=" + basicAuth);
                 }
             }
             httpcon.setReadTimeout(10000);

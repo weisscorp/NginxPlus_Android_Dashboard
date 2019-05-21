@@ -37,9 +37,10 @@ public class ServersAdapter extends RecyclerView.Adapter<ServersAdapter.ServersV
     public void onBindViewHolder(@NonNull final ServersViewHolder serversViewHolder, final int i) {
         Log.d(TAG, "onBindViewHolder: called.");
         final ServersModel temp = this.list.get(i);
-        //final String upstrname = UpstreamName.getUpstreamName().getUpstrname();
-
         serversViewHolder.srvname.setText(temp.getName());
+        if (temp.getActive()>4 && temp.getRequests()==0) {
+            serversViewHolder.twActive.setBackgroundResource(R.color.orange);
+            serversViewHolder.twRequests.setBackgroundResource(R.color.orange); }
         serversViewHolder.twActive.setText(""+temp.getActive());
         serversViewHolder.twRequests.setText(""+temp.getRequests());
 
@@ -65,9 +66,7 @@ public class ServersAdapter extends RecyclerView.Adapter<ServersAdapter.ServersV
 
         }
 
-
         final int id = i;
-
         serversViewHolder.ibUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -81,7 +80,6 @@ public class ServersAdapter extends RecyclerView.Adapter<ServersAdapter.ServersV
                 thread.start();
             }
         });
-
         serversViewHolder.ibDown.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -95,7 +93,6 @@ public class ServersAdapter extends RecyclerView.Adapter<ServersAdapter.ServersV
                 thread.start();
             }
         });
-
         serversViewHolder.ibDrain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -109,7 +106,6 @@ public class ServersAdapter extends RecyclerView.Adapter<ServersAdapter.ServersV
             thread.start();
             }
         });
-
     }
 
     @Override

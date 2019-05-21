@@ -154,7 +154,7 @@
             android:ems="10"
             android:text="none"
             android:enabled="false"
-            android:inputType="text" />
+            android:inputType="textPassword" />
     </LinearLayout>
     <LinearLayout android:layout_width="fill_parent"
         android:layout_height="wrap_content"
