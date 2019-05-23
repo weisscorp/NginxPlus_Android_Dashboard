@@ -1,86 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/LLserveritem"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         >
 
     <TextView
         android:id="@+id/srvname"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:background="@color/colorBackgound"
-        android:gravity="left"
+        android:gravity="start"
         android:hapticFeedbackEnabled="false"
         android:text="имя сервера"
+        android:layout_alignStart="@+id/ibUp"
+        android:layout_alignParentTop="true"
         android:textColor="@color/Black"
-        android:textSize="13sp" />
+        android:textSize="14sp" />
 
 
-        <LinearLayout
-            android:id="@+id/LLbtns"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:background="@color/colorBackgound">
+     <ImageView
+         android:id="@+id/ivStat"
+         android:layout_width="16dp"
+         android:layout_height="40dp"
+         android:layout_below="@+id/srvname"
+         android:src="@color/colorDrain">
+     </ImageView>
 
-            <ImageView
-                android:id="@+id/ivStat"
-                android:layout_width="16dp"
-                android:layout_height="match_parent"
-                android:src="@color/colorDrain">
+     <TextView
+         android:id="@+id/twActive"
+         android:textColor="@color/Black"
+         android:layout_width="90dp"
+         android:layout_height="wrap_content"
+         android:layout_toEndOf="@+id/ivStat"
+         android:layout_below="@+id/srvname"
+         android:textSize="13sp"
+         android:text="Active" />
+     <TextView
+         android:id="@+id/twRequests"
+         android:textColor="@color/Black"
+         android:layout_width="90dp"
+         android:layout_height="wrap_content"
+         android:layout_toEndOf="@+id/ivStat"
+         android:layout_below="@+id/twActive"
+         android:layout_alignBottom="@+id/ivStat"
+         android:textSize="13sp"
+         android:text="Requests" />
+     <ImageButton
+         android:id="@+id/ibUp"
+         android:layout_width="100dp"
+         android:layout_height="35dp"
+         android:layout_below="@+id/srvname"
+         android:layout_toStartOf="@+id/ibDown"
+         app:srcCompat="@drawable/srv_action_up"
+         android:background="@drawable/button_up"/>
 
-            </ImageView>
+     <ImageButton
+         android:id="@+id/ibDown"
+         android:layout_width="100dp"
+         android:layout_height="35dp"
+         android:layout_toStartOf="@+id/ibDrain"
+         android:layout_below="@+id/srvname"
+         app:srcCompat="@drawable/srv_action_stop"
+         android:background="@drawable/button_down"/>
 
-            <LinearLayout
-                android:id="@+id/LLactive"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:background="@color/colorBackgound">
-
-            <TextView
-                android:id="@+id/twActive"
-                android:textColor="@color/Black"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="Active" />
-            <TextView
-                android:id="@+id/twRequests"
-                android:textColor="@color/Black"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="Requests" />
-            </LinearLayout>
-            <ImageButton
-                android:id="@+id/ibUp"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/srv_action_up"
-                android:background="@drawable/button_up"/>
-
-            <ImageButton
-                android:id="@+id/ibDown"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/srv_action_stop"
-                android:background="@drawable/button_down"/>
-
-            <ImageButton
-                android:id="@+id/ibDrain"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/srv_action_drain"
-                android:background="@drawable/button_drain"/>
-
-
-        </LinearLayout>
-    </LinearLayout>
+     <ImageButton
+         android:id="@+id/ibDrain"
+         android:layout_width="100dp"
+         android:layout_height="35dp"
+         android:layout_alignParentRight="true"
+         android:layout_below="@+id/srvname"
+         app:srcCompat="@drawable/srv_action_drain"
+         android:background="@drawable/button_drain"/>
+</RelativeLayout>
