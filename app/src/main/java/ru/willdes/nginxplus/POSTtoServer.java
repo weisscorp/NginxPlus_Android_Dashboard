@@ -55,7 +55,7 @@ public class POSTtoServer {
         BufferedWriter bufferedWriter = null;
         StringBuilder buffer = null;
         try {
-            URL url = new URL("http://" + this.ipaddr + ":" + this.port + "/api/1/http/upstreams/" + this.upstream + "/servers/" + this.idsrv);
+            URL url = new URL("http://" + this.ipaddr + ":" + this.port + "/api/2/http/upstreams/" + this.upstream + "/servers/" + this.idsrv);
             HttpURLConnection httpcon = (HttpURLConnection) url.openConnection();
             //Log.d("HTTP", url.toString());
             //Log.d("JSON", json);

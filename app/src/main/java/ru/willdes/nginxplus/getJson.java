@@ -51,7 +51,7 @@ public class getJson extends IntentService {
                 db.open();
             while (true) {
                 try {
-                    URL url = new URL("http://" + ipaddr + ":" + port + "/api/3/http/upstreams/");
+                    URL url = new URL("http://" + ipaddr + ":" + port + "/api/2/http/upstreams/");
                     connection = (HttpURLConnection) url.openConnection();
                     if (user != "none") {
                         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {

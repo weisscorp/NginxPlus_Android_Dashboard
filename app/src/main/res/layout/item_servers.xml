@@ -7,16 +7,17 @@
         android:orientation="vertical"
         >
 
-        <TextView
-            android:id="@+id/srvname"
-            android:textColor="@color/Black"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:gravity="center"
-            android:text="имя сервера"
-            android:textSize="13sp"
-            android:background="@color/colorBackgound"/>
+    <TextView
+        android:id="@+id/srvname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:background="@color/colorBackgound"
+        android:gravity="left"
+        android:hapticFeedbackEnabled="false"
+        android:text="имя сервера"
+        android:textColor="@color/Black"
+        android:textSize="13sp" />
 
 
         <LinearLayout
