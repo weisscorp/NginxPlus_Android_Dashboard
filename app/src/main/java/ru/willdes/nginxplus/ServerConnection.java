@@ -3,6 +3,7 @@ package ru.willdes.nginxplus;
 public class ServerConnection {
     private static ServerConnection instance;
     private int idconn;
+    private String conname;
     private String ipaddr;
     private String port;
     private String user;
@@ -53,5 +54,13 @@ public class ServerConnection {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getConname() {
+        return conname;
+    }
+
+    public void setConname(String conname) {
+        this.conname = conname;
     }
 }

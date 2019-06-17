@@ -1,5 +1,6 @@
 package ru.willdes.nginxplus;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -7,6 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -21,6 +24,19 @@ public class upstreams extends AppCompatActivity {
     final String LOG_TAG = "myLogs";
 
     db db;
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_activity_servers, menu);
+        return true;
+    }
+    public void action_refresh(MenuItem item) {
+        finish();
+        Intent i = new Intent( this , this.getClass() );
+        this.startActivity(i);
+    }
+
+    @SuppressLint({"RtlHardcoded"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,9 +45,7 @@ public class upstreams extends AppCompatActivity {
         final LinearLayout.LayoutParams lParam = new LinearLayout.LayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         final TextView textView = new TextView(this);
         textView.setGravity(Gravity.CENTER);
-        Intent getintent = getIntent();
-        String connname = getintent.getStringExtra("connname");
-        setTitle(connname);
+        setTitle(ServerConnection.getInstance().getConname());
 
 
         db = new db(this);
@@ -47,10 +61,11 @@ public class upstreams extends AppCompatActivity {
             cur.moveToFirst();
             do {
                 Button button = new Button(this);
-                button.setGravity(Gravity.CENTER);
+                button.setGravity(Gravity.LEFT);
                 final String name = cur.getString(cur.getColumnIndex(COLUMN_NAME));
                 final int idupstr = cur.getInt(cur.getColumnIndex(COLUMN_ID));
-                button.setText(name);
+                button.setTextSize(16);
+                button.setText("                                  " + name);
                 button.setBackgroundResource(R.drawable.round_button);
                 button.setId(idupstr);
                 Log.d(LOG_TAG, "Name: " + name);

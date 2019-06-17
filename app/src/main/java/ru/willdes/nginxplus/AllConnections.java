@@ -1,5 +1,6 @@
 package ru.willdes.nginxplus;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -29,6 +30,7 @@ public class AllConnections extends AppCompatActivity {
     db db;
     final String LOG_TAG = "myLogs";
 
+    @SuppressLint({"RtlHardcoded", "SetTextI20n"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +63,7 @@ public class AllConnections extends AppCompatActivity {
                 LinearLayout.LayoutParams lParam = new LinearLayout.LayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
                 Button button = new Button(this);
                 button.setGravity(Gravity.CENTER);
+                button.setTextSize(16);
                 final String connname = cur.getString(cur.getColumnIndex(COLUMN_NAME));
                 button.setText(connname);
                 button.setBackgroundResource(R.drawable.round_button);
@@ -82,8 +85,9 @@ public class AllConnections extends AppCompatActivity {
                         ServerConnection.getInstance().setPort(conPort);
                         ServerConnection.getInstance().setUser(conUser);
                         ServerConnection.getInstance().setPassword(conPasswd);
-                        startActivity(intent.putExtra("connname", connname));
-                        startService(startserv.putExtra("id", _id));
+                        ServerConnection.getInstance().setConname(connname);
+                        startActivity(intent);
+                        startService(startserv);
 
                         Log.d(LOG_TAG, "Start Service getJson");
                     }

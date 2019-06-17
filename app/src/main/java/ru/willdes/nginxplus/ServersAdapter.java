@@ -37,17 +37,19 @@ public class ServersAdapter extends RecyclerView.Adapter<ServersAdapter.ServersV
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull final ServersViewHolder serversViewHolder, final int i) {
-        Log.d(TAG, "onBindViewHolder: called.");
+        //Log.d(TAG, "onBindViewHolder: called.");
         final ServersModel temp = this.list.get(i);
-        serversViewHolder.srvname.setText("         "+temp.getName());
+        serversViewHolder.srvname.setText("       "+temp.getName());
 
         serversViewHolder.twActive.setText(""+temp.getActive());
         serversViewHolder.twRequests.setText(""+temp.getRequests());
-
+        serversViewHolder.twActive.setBackgroundResource(R.color.colorBackgound);
+        serversViewHolder.twRequests.setBackgroundResource(R.color.colorBackgound);
 
            switch (temp.getState()) {
                case "up": serversViewHolder.ivStat.setColorFilter(context.getResources().getColor(R.color.colorUp));
                    if (temp.getActive()>=2 && temp.getRequests()==0) {
+                       Log.d("Orange", "name: " + temp.getName() + "; id: " + i + " set orange color" );
                        serversViewHolder.twActive.setBackgroundResource(R.color.orange);
                        serversViewHolder.twRequests.setBackgroundResource(R.color.orange); }
                    break;

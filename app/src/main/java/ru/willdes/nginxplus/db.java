@@ -80,13 +80,13 @@ public class db {
     public void open() {
         mDBHelper = new DBHelper(mCtx, "nginxDB", null, 1);
         mDB = mDBHelper.getWritableDatabase();
-        Log.d("DB:", "Connection opend");
+        //Log.d("DB:", "Connection opend");
     }
 
     // закрыть подключение
     public void close() {
         if (mDBHelper!=null) mDBHelper.close();
-        Log.d("DB:", "Connection closed");
+        //Log.d("DB:", "Connection closed");
     }
 
     // получить все данные из таблицы Connections

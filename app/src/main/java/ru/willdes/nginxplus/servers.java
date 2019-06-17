@@ -91,13 +91,15 @@ public class servers extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.recyclerview);
         if (serverscur.getCount() != 0) {
             serverscur.moveToFirst();
+            int pos = 0;
             do {
                 String name = serverscur.getString(serverscur.getColumnIndex(COLUMN_SERVER));
                 String state = serverscur.getString(serverscur.getColumnIndex(COLUMN_STATE));
                 int active = serverscur.getInt(serverscur.getColumnIndex(COLUMN_ACTIVE));
                 int requests = serverscur.getInt(serverscur.getColumnIndex(COLUMN_REQPSEC));
                 ServersModel item = new ServersModel(name, state, active, requests);
-                list.add(item);
+                list.add(pos, item);
+                pos++;
             } while (serverscur.moveToNext());
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
             recyclerView.setAdapter(adapter);
