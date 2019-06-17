@@ -1,5 +1,6 @@
 package ru.willdes.nginxplus;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -33,21 +34,23 @@ public class ServersAdapter extends RecyclerView.Adapter<ServersAdapter.ServersV
         return new ServersViewHolder(view);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull final ServersViewHolder serversViewHolder, final int i) {
         Log.d(TAG, "onBindViewHolder: called.");
         final ServersModel temp = this.list.get(i);
-        serversViewHolder.srvname.setText(temp.getName());
-        if (temp.getActive()>4 && temp.getRequests()==0) {
-            serversViewHolder.twActive.setBackgroundResource(R.color.orange);
-            serversViewHolder.twRequests.setBackgroundResource(R.color.orange); }
+        serversViewHolder.srvname.setText("         "+temp.getName());
+
         serversViewHolder.twActive.setText(""+temp.getActive());
         serversViewHolder.twRequests.setText(""+temp.getRequests());
 
 
            switch (temp.getState()) {
                case "up": serversViewHolder.ivStat.setColorFilter(context.getResources().getColor(R.color.colorUp));
-                           break;
+                   if (temp.getActive()>=2 && temp.getRequests()==0) {
+                       serversViewHolder.twActive.setBackgroundResource(R.color.orange);
+                       serversViewHolder.twRequests.setBackgroundResource(R.color.orange); }
+                   break;
 
                case "down": serversViewHolder.ivStat.setColorFilter(context.getResources().getColor(R.color.colorDown));
                    break;
