@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import static ru.willdes.nginxplus.nginxplus.COLUMN_ADDRESS;
 import static ru.willdes.nginxplus.nginxplus.COLUMN_ID;
@@ -29,6 +30,7 @@ import static ru.willdes.nginxplus.nginxplus.COLUMN_USER;
 public class AllConnections extends AppCompatActivity {
     db db;
     final String LOG_TAG = "myLogs";
+    Intent startserv;
 
     @SuppressLint({"RtlHardcoded", "SetTextI20n"})
     @Override
@@ -38,6 +40,7 @@ public class AllConnections extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         LinearLayout linearLayout = findViewById(R.id.allconnections);
+        startserv = new Intent(this, getJson.class);
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -47,6 +50,10 @@ public class AllConnections extends AppCompatActivity {
                 startActivityForResult(intent, 1);
             }
         });
+
+
+
+
         db = new db(this);
         db.open();
         final Cursor cur = db.getAllDataFromConnections();
@@ -77,7 +84,6 @@ public class AllConnections extends AppCompatActivity {
                 final View btn1 = findViewById(_id);
                 registerForContextMenu(btn1);
                 final Intent intent = new Intent(this, upstreams.class);
-                final Intent startserv = new Intent(this, getJson.class);
                 btn1.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View view) {
                         ServerConnection.getInstance().setIdconn(_id);
@@ -87,9 +93,18 @@ public class AllConnections extends AppCompatActivity {
                         ServerConnection.getInstance().setPassword(conPasswd);
                         ServerConnection.getInstance().setConname(connname);
                         startActivity(intent);
+                        //processStartService(getJson.TAG);
+
                         startService(startserv);
 
                         Log.d(LOG_TAG, "Start Service getJson");
+                    }
+
+                    private void processStartService(final String tag) {
+                        Intent intent = new Intent(getApplicationContext(), getJson.class);
+                        intent.addCategory(tag);
+                        startService(intent);
+                        Log.d(LOG_TAG, "Call function startService getJson");
                     }
                 });
             } while (cur.moveToNext());
@@ -99,11 +114,21 @@ public class AllConnections extends AppCompatActivity {
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        // TODO: check service started
+        if(startserv==null)
+        //stopService(startserv);
+        Log.d(LOG_TAG, "ALLconnections call onResume");
+    }
+
+    @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
         menu.setHeaderTitle("Nginx сервер");
         menu.add(0, v.getId(), 0, "Редактировать");
         menu.add(0, v.getId(), 0, "Дублировать");
+        menu.add(0, v.getId(), 0, "Обнулить");
         menu.add(0, v.getId(), 0, "Удалить");
     }
 
@@ -111,6 +136,7 @@ public class AllConnections extends AppCompatActivity {
     public boolean onContextItemSelected(MenuItem item) {
         if(item.getTitle()=="Редактировать"){edit(item.getItemId());}
         else if(item.getTitle()=="Дублировать"){dublicate(item.getItemId());}
+        else if(item.getTitle()=="Обнулить"){erase(item.getItemId());}
         else if(item.getTitle()=="Удалить"){delete(item.getItemId());}
         else {return false;}
         return true;
@@ -138,6 +164,27 @@ public class AllConnections extends AppCompatActivity {
         startActivityForResult(intent.putExtra("id", id), 1);
 
     }
+
+
+    public void erase(int id){
+        db.open();
+        Cursor cursor = db.getAllDataFromUpstreamsByServerId(id);
+        cursor.moveToFirst();
+        if (cursor.getCount() != 0) {
+            do {
+                int idupstr = cursor.getInt(cursor.getColumnIndex(COLUMN_ID));
+                db.delRecServers(idupstr);
+            } while (cursor.moveToNext());
+            db.delRecUpstream(id);
+        }
+        db.close();
+        Toast toast = Toast.makeText(getApplicationContext(),
+                R.string.cleantext, Toast.LENGTH_SHORT);
+        toast.show();
+
+
+    }
+
 
     public void dublicate(int id){
         Intent intent = new Intent(this, DubConnections.class);

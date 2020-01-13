@@ -12,6 +12,7 @@
     <string name="DisplayName">Выводимое имя</string>
     <string name="empty_servers">Нет доступных серверов</string>
     <string name="empty_upstreams">Нет доступных Upstreams</string>
+    <string name="cleantext">Соединение очищено</string>
 
 
 </resources>

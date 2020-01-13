@@ -1,16 +1,24 @@
 package ru.willdes.nginxplus;
 
         import android.content.Intent;
-        import android.database.Cursor;
-        import android.os.Bundle;
-        import android.support.v7.app.AppCompatActivity;
-        import android.view.View;
-        import android.widget.CompoundButton;
-        import android.widget.EditText;
-        import android.widget.Switch;
-        import android.widget.Toast;
+import android.database.Cursor;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
+import android.view.View;
+import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.Switch;
+import android.widget.Toast;
 
-        import static ru.willdes.nginxplus.nginxplus.*;
+import static ru.willdes.nginxplus.nginxplus.COLUMN_ADDRESS;
+        import static ru.willdes.nginxplus.nginxplus.COLUMN_ID;
+        import static ru.willdes.nginxplus.nginxplus.COLUMN_NAME;
+import static ru.willdes.nginxplus.nginxplus.COLUMN_PASSWD;
+import static ru.willdes.nginxplus.nginxplus.COLUMN_PORT;
+import static ru.willdes.nginxplus.nginxplus.COLUMN_USER;
 
 public class EditConnections extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener {
 
@@ -63,6 +71,38 @@ public class EditConnections extends AppCompatActivity implements CompoundButton
         if (s != null) {
             s.setOnCheckedChangeListener(this);
         }
+
+        Button button = new Button(this);
+        button.setGravity(Gravity.CENTER);
+        button.setTextSize(16);
+        button.setText("Отчистить");
+        button.setBackgroundResource(R.drawable.round_button);
+        int _id = 10000;
+        button.setId(_id);
+        LinearLayout linearLayout = findViewById(R.id.leaneraddconn);
+        linearLayout.addView(button);
+        final View btn1 = findViewById(_id);
+        registerForContextMenu(btn1);
+        btn1.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                db.open();
+                Cursor cursor = db.getAllDataFromUpstreamsByServerId(id);
+                cursor.moveToFirst();
+                if (cursor.getCount() != 0) {
+                    do {
+                        int idupstr = cursor.getInt(cursor.getColumnIndex(COLUMN_ID));
+                        db.delRecServers(idupstr);
+                    } while (cursor.moveToNext());
+                    db.delRecUpstream(id);
+                }
+                db.close();
+                Toast toast = Toast.makeText(getApplicationContext(),
+                        R.string.cleantext, Toast.LENGTH_SHORT);
+                toast.show();
+            }
+        });
+
+
         db.close();
     }
     @Override

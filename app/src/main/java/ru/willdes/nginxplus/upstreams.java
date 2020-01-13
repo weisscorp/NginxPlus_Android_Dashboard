@@ -31,9 +31,12 @@ public class upstreams extends AppCompatActivity {
         return true;
     }
     public void action_refresh(MenuItem item) {
+        db.close();
         finish();
         Intent i = new Intent( this , this.getClass() );
         this.startActivity(i);
+
+        startService(new Intent(this, getJson.class));
     }
 
     @SuppressLint({"RtlHardcoded"})
@@ -91,7 +94,7 @@ public class upstreams extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         // закрываем подключение при выходе
-
+        ServerConnection.getInstance().setIdconn(0);
         db.close();
     }
 }

@@ -1,5 +1,5 @@
 package ru.willdes.nginxplus;
-
+//Singletone class
 public class ServerConnection {
     private static ServerConnection instance;
     private int idconn;
