@@ -1,5 +1,6 @@
 package ru.willdes.nginxplus;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -60,13 +61,26 @@ public class servers extends AppCompatActivity {
     @Override
     protected void onRestart() {
         super.onRestart();
-        if (t == null){refresh_servers();}else {t=null;
-        refresh_servers();}
+        if (t == null)
+            {
+                refresh_servers();
+            }
+        else
+            {
+                t=null;
+                refresh_servers();
+            }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        if (idupstr == 0){
+            db.close();
+            finish();
+            Intent i = new Intent( this , AllConnections.class );
+            this.startActivity(i);
+        }
         if (t == null){
             Log.d("onResume","start");
             refresh_servers();}
@@ -119,6 +133,12 @@ public class servers extends AppCompatActivity {
     public void update_servers() {
         db db = new db(this);
         db.open();
+        if (idupstr == 0){
+            db.close();
+            finish();
+            Intent i = new Intent( this , AllConnections.class );
+            this.startActivity(i);
+        }
         Cursor serverscur = db.getAllDataFromServersByIdupstr(idupstr);
         serverscur.moveToFirst();
         int pos = 0;

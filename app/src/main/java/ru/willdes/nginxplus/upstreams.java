@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.Menu;
@@ -22,6 +21,7 @@ import static ru.willdes.nginxplus.nginxplus.COLUMN_NAME;
 public class upstreams extends AppCompatActivity {
 
     final String LOG_TAG = "myLogs";
+    final int idconn = ServerConnection.getInstance().getIdconn();
 
     db db;
 
@@ -53,7 +53,7 @@ public class upstreams extends AppCompatActivity {
 
         db = new db(this);
         db.open();
-        Cursor cur = db.getAllDataFromUpstreamsByServerId(ServerConnection.getInstance().getIdconn());
+        Cursor cur = db.getAllDataFromUpstreamsByServerId(idconn);
         if (cur.getCount() == 0) {
             textView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
             textView.setGravity(Gravity.CENTER);
@@ -71,8 +71,8 @@ public class upstreams extends AppCompatActivity {
                 button.setText("                                  " + name);
                 button.setBackgroundResource(R.drawable.round_button);
                 button.setId(idupstr);
-                Log.d(LOG_TAG, "Name: " + name);
-                Log.d(LOG_TAG, "ID Upstream: " + idupstr);
+                //Log.d(LOG_TAG, "Name: " + name);
+                //Log.d(LOG_TAG, "ID Upstream: " + idupstr);
 
 
                 linearLayout.addView(button, lParam);
@@ -83,7 +83,7 @@ public class upstreams extends AppCompatActivity {
                         UpstreamName.getUpstreamName().setIdupstr(idupstr);
                         UpstreamName.getUpstreamName().setUpstrname(name);
                         startActivity(intent);
-                        Log.d(LOG_TAG, "Go to servers in to upstream: " + name);
+                        //Log.d(LOG_TAG, "Go to servers in to upstream: " + name);
                     }
                 });
             } while (cur.moveToNext());
@@ -96,5 +96,16 @@ public class upstreams extends AppCompatActivity {
         // закрываем подключение при выходе
         ServerConnection.getInstance().setIdconn(0);
         db.close();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (idconn == 0){
+            db.close();
+            finish();
+            Intent i = new Intent( this , AllConnections.class );
+            this.startActivity(i);
+        }
     }
 }
