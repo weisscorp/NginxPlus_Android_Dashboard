@@ -1,77 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/LLserveritem"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        >
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/LLserveritem"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent">
+
+    <ImageButton
+        android:id="@+id/ibUp"
+        android:layout_width="100dp"
+        android:layout_height="35dp"
+        android:layout_below="@+id/srvname"
+        android:layout_toStartOf="@+id/ibDown"
+        android:background="@drawable/button_up"
+        app:srcCompat="@drawable/srv_action_up" />
+
+
+    <ImageButton
+        android:id="@+id/ibDown"
+        android:layout_width="100dp"
+        android:layout_height="35dp"
+        android:layout_below="@+id/srvname"
+        android:layout_toStartOf="@+id/ibDrain"
+        android:background="@drawable/button_down"
+        app:srcCompat="@drawable/srv_action_stop" />
+
+    <ImageButton
+        android:id="@+id/ibDrain"
+        android:layout_width="100dp"
+        android:layout_height="35dp"
+        android:layout_below="@+id/srvname"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/button_drain"
+        app:srcCompat="@drawable/srv_action_drain" />
+
+    <ImageView
+        android:id="@+id/ivStat"
+        android:layout_width="16dp"
+        android:layout_height="35dp"
+        android:layout_below="@+id/srvname"
+        android:src="@color/colorDrain"></ImageView>
 
     <TextView
         android:id="@+id/srvname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/ibUp"
+        android:layout_alignParentTop="true"
         android:layout_gravity="center_vertical"
-        android:background="@color/colorBackgound"
+        android:background="@android:color/transparent"
         android:gravity="start"
         android:hapticFeedbackEnabled="false"
         android:text="имя сервера"
-        android:layout_alignStart="@+id/ibUp"
-        android:layout_alignParentTop="true"
-        android:textColor="@color/Black"
+        android:textColor="@color/colorBackgoundWhite"
         android:textSize="14sp" />
 
+    <TextView
+        android:id="@+id/twActive"
+        android:layout_width="90dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/srvname"
+        android:layout_toEndOf="@+id/ivStat"
+        android:background="@color/colorAccent"
+        android:text="Active"
+        android:textColor="@color/colorBackgoundWhite"
+        android:textSize="13sp" />
 
-     <ImageView
-         android:id="@+id/ivStat"
-         android:layout_width="16dp"
-         android:layout_height="35dp"
-         android:layout_below="@+id/srvname"
-         android:src="@color/colorDrain">
-     </ImageView>
-
-     <TextView
-         android:id="@+id/twActive"
-         android:textColor="@color/Black"
-         android:layout_width="90dp"
-         android:layout_height="wrap_content"
-         android:layout_toEndOf="@+id/ivStat"
-         android:layout_below="@+id/srvname"
-         android:textSize="13sp"
-         android:text="Active" />
-     <TextView
-         android:id="@+id/twRequests"
-         android:textColor="@color/Black"
-         android:layout_width="90dp"
-         android:layout_height="wrap_content"
-         android:layout_toEndOf="@+id/ivStat"
-         android:layout_below="@+id/twActive"
-         android:layout_alignBottom="@+id/ivStat"
-         android:textSize="13sp"
-         android:text="Requests" />
-     <ImageButton
-         android:id="@+id/ibUp"
-         android:layout_width="100dp"
-         android:layout_height="35dp"
-         android:layout_below="@+id/srvname"
-         android:layout_toStartOf="@+id/ibDown"
-         app:srcCompat="@drawable/srv_action_up"
-         android:background="@drawable/button_up"/>
-
-     <ImageButton
-         android:id="@+id/ibDown"
-         android:layout_width="100dp"
-         android:layout_height="35dp"
-         android:layout_toStartOf="@+id/ibDrain"
-         android:layout_below="@+id/srvname"
-         app:srcCompat="@drawable/srv_action_stop"
-         android:background="@drawable/button_down"/>
-
-     <ImageButton
-         android:id="@+id/ibDrain"
-         android:layout_width="100dp"
-         android:layout_height="35dp"
-         android:layout_alignParentRight="true"
-         android:layout_below="@+id/srvname"
-         app:srcCompat="@drawable/srv_action_drain"
-         android:background="@drawable/button_drain"/>
+    <TextView
+        android:id="@+id/twRequests"
+        android:layout_width="90dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/twActive"
+        android:layout_alignBottom="@+id/ivStat"
+        android:layout_toEndOf="@+id/ivStat"
+        android:background="@android:color/transparent"
+        android:text="Requests"
+        android:textColor="@color/colorBackgoundWhite"
+        android:textSize="13sp" />
 </RelativeLayout>

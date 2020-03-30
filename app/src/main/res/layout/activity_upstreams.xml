@@ -9,7 +9,7 @@
         android:id="@+id/upstreams"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorBackgound"
+        android:background="@android:color/transparent"
         android:orientation="vertical"></LinearLayout>
 
 </ScrollView>

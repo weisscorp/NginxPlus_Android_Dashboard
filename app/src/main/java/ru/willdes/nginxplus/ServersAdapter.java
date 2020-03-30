@@ -43,8 +43,8 @@ public class ServersAdapter extends RecyclerView.Adapter<ServersAdapter.ServersV
 
         serversViewHolder.twActive.setText(""+temp.getActive());
         serversViewHolder.twRequests.setText(""+temp.getRequests());
-        serversViewHolder.twActive.setBackgroundResource(R.color.colorBackgound);
-        serversViewHolder.twRequests.setBackgroundResource(R.color.colorBackgound);
+        serversViewHolder.twActive.setBackgroundResource(android.R.color.transparent);
+        serversViewHolder.twRequests.setBackgroundResource(android.R.color.transparent);
 
            switch (temp.getState()) {
                case "up": serversViewHolder.ivStat.setColorFilter(context.getResources().getColor(R.color.colorUp));

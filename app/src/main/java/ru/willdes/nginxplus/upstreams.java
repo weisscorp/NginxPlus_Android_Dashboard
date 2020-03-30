@@ -1,6 +1,5 @@
 package ru.willdes.nginxplus;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -39,7 +38,6 @@ public class upstreams extends AppCompatActivity {
         startService(new Intent(this, getJson.class));
     }
 
-    @SuppressLint({"RtlHardcoded"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,7 +67,8 @@ public class upstreams extends AppCompatActivity {
                 final int idupstr = cur.getInt(cur.getColumnIndex(COLUMN_ID));
                 button.setTextSize(16);
                 button.setText("                                  " + name);
-                button.setBackgroundResource(R.drawable.round_button);
+                //button.setBackgroundResource(R.drawable.round_button);
+                //button.setBackgroundColor(getResources().getColor(R.color.colorBackgoundBlack));
                 button.setId(idupstr);
                 Log.d(LOG_TAG, "Name: " + name);
                 Log.d(LOG_TAG, "ID Upstream: " + idupstr);
