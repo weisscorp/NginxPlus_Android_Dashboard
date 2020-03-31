@@ -18,7 +18,7 @@
         <service
             android:name=".getJson"
             android:enabled="true"
-            android:exported="false"></service>
+            android:exported="false" />
 
         <activity android:name=".servers"
                   android:theme="@style/AppTheme.NoActionBar"/>
@@ -26,7 +26,6 @@
         <activity android:name=".AddConnections" />
         <activity android:name=".EditConnections" />
         <activity android:name=".DubConnections" />
-
         <activity
             android:name=".AllConnections"
             android:label="@string/title_activity_connections"
@@ -38,5 +37,4 @@
             </intent-filter>
         </activity>
     </application>
-
 </manifest>
