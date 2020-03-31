@@ -18,6 +18,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.ConnectException;
 import java.net.HttpURLConnection;
+import java.net.NoRouteToHostException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
@@ -41,6 +42,7 @@ public class getJson extends IntentService {
         new Handler(Looper.getMainLooper()).post(new Runnable() {
             @Override
             public void run() {
+                Log.d(LOG_TAG, "toast start");
                 Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
             }
         });
@@ -136,6 +138,10 @@ public class getJson extends IntentService {
              } catch (ConnectException e2) {
                  showToast("Server " + ServerConnection.getInstance().getConname() + " not unavailable");
                  e2.printStackTrace();
+                 flag = false;
+             } catch (NoRouteToHostException e) {
+                 showToast("Server " + ServerConnection.getInstance().getConname() + ": no route to host");
+                 e.printStackTrace();
                  flag = false;
              } catch (IOException e1) {
                  e1.printStackTrace();
