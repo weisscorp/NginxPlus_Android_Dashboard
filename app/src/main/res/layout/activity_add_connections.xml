@@ -15,15 +15,6 @@
         android:paddingTop="5dp"
         android:paddingBottom="5dp">
 
-        <EditText
-            android:id="@+id/displayName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="10"
-            android:ems="10"
-            android:hint="frontend"
-            android:inputType="text" />
-
         <TextView
             android:id="@+id/txtDisplayName"
             android:layout_width="wrap_content"
@@ -32,6 +23,15 @@
             android:background="@color/colorBackgoundBlack"
             android:text="@string/DisplayName"
             android:textColor="@android:color/white" />
+
+        <EditText
+            android:id="@+id/displayName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="10"
+            android:ems="10"
+            android:hint="frontend"
+            android:inputType="text" />
 
     </LinearLayout>
 
@@ -119,6 +119,15 @@
         android:paddingBottom="5dp">
 
 
+        <TextView
+            android:id="@+id/txtLogin"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/colorBackgoundBlack"
+            android:text="@string/user"
+            android:textColor="@android:color/white" />
+
         <EditText
             android:id="@+id/edUser"
             android:layout_width="wrap_content"
@@ -128,15 +137,6 @@
             android:enabled="false"
             android:inputType="textPersonName"
             android:text="none" />
-
-        <TextView
-            android:id="@+id/txtLogin"
-            android:layout_width="40dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@color/colorBackgoundBlack"
-            android:text="@string/user"
-            android:textColor="@android:color/white" />
     </LinearLayout>
 
     <LinearLayout
@@ -147,6 +147,15 @@
         android:paddingBottom="5dp">
 
 
+        <TextView
+            android:id="@+id/txtPasswd"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/colorBackgoundBlack"
+            android:text="@string/password"
+            android:textColor="@android:color/white" />
+
         <EditText
             android:id="@+id/edPasswd"
             android:layout_width="wrap_content"
@@ -156,15 +165,6 @@
             android:enabled="false"
             android:inputType="textPassword"
             android:text="none" />
-
-        <TextView
-            android:id="@+id/txtPasswd"
-            android:layout_width="40dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@color/colorBackgoundBlack"
-            android:text="@string/password"
-            android:textColor="@android:color/white" />
     </LinearLayout>
 
     <LinearLayout
