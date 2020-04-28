@@ -73,7 +73,7 @@ public class AllConnections extends AppCompatActivity {
                 button.setTextSize(16);
                 final String connname = cur.getString(cur.getColumnIndex(COLUMN_NAME));
                 button.setText(connname);
-                button.setBackgroundResource(R.drawable.round_button);
+                //button.setBackgroundResource(R.drawable.round_button);
                 final int _id = cur.getInt(cur.getColumnIndex("id"));
                 final String conAddr = cur.getString(cur.getColumnIndex(COLUMN_ADDRESS));
                 final String conPort = cur.getString(cur.getColumnIndex(COLUMN_PORT));

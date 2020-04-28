@@ -76,7 +76,7 @@ public class EditConnections extends AppCompatActivity implements CompoundButton
         button.setGravity(Gravity.CENTER);
         button.setTextSize(16);
         button.setText("Отчистить");
-        button.setBackgroundResource(R.drawable.round_button);
+        //button.setBackgroundResource(R.drawable.round_button);
         int _id = 10000;
         button.setId(_id);
         LinearLayout linearLayout = findViewById(R.id.leaneraddconn);
