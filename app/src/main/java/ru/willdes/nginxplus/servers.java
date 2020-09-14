@@ -15,7 +15,6 @@ import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,7 +25,6 @@ import static ru.willdes.nginxplus.nginxplus.COLUMN_STATE;
 
 public class servers extends AppCompatActivity {
     db db;
-    final String LOG_TAG = "servers";
     List<ServersModel> list = new ArrayList<>();
     ServersAdapter adapter = new ServersAdapter(this, list);
     final int idupstr = UpstreamName.getUpstreamName().getIdupstr();
@@ -61,28 +59,24 @@ public class servers extends AppCompatActivity {
     @Override
     protected void onRestart() {
         super.onRestart();
-        if (t == null)
-            {
-                refresh_servers();
-            }
-        else
-            {
-                t=null;
-                refresh_servers();
-            }
+        if (t != null) {
+            t = null;
+        }
+        refresh_servers();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         if (idupstr == 0){
+            Log.d("onResume","idupstr == 0");
             db.close();
             finish();
             Intent i = new Intent( this , AllConnections.class );
             this.startActivity(i);
         }
         if (t == null){
-            Log.d("onResume","start");
+            Log.d("onResume","t == null");
             refresh_servers();}
 
     }
@@ -164,14 +158,15 @@ public class servers extends AppCompatActivity {
             @Override public void run(){
                 try{
                     while (!isInterrupted()) {
-                        Thread.sleep(1000);
+                        Thread.sleep(700);
                         runOnUiThread(new Runnable() {
                             @Override public void run() {
                                 update_servers();
                             }
-                        });
-                    }
-                } catch (InterruptedException e) { }
+                        });                    }
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             } };
         t.start();
     }

@@ -82,10 +82,10 @@ public class getJson extends IntentService {
                  connection.connect();
                  InputStream stream = connection.getInputStream();
                  reader = new BufferedReader(new InputStreamReader(stream));
-                 StringBuffer buffer = new StringBuffer();
+                 StringBuilder buffer = new StringBuilder();
                  String line = "";
                  while ((line = reader.readLine()) != null) {
-                     buffer.append(line + "\n");
+                     buffer.append(line).append("\n");
                      //Log.d(LOG_TAG, "Response: > " + line);
                  }
                  JSONObject jObject = new JSONObject(buffer.toString().trim());
@@ -143,9 +143,8 @@ public class getJson extends IntentService {
                  showToast("Server " + ServerConnection.getInstance().getConname() + ": no route to host");
                  e.printStackTrace();
                  flag = false;
-             } catch (IOException e1) {
-                 e1.printStackTrace();
-             } catch (JSONException e1) {
+             } catch (IOException | JSONException e1) {
+                 showToast("Server " + ServerConnection.getInstance().getConname() + ": IOException");
                  e1.printStackTrace();
              } finally {
                  if (connection != null) {
@@ -160,7 +159,7 @@ public class getJson extends IntentService {
                  }
              }
              try {
-                 TimeUnit.SECONDS.sleep(1);
+                     TimeUnit.MILLISECONDS.sleep(300);
              } catch (InterruptedException e) {
                  e.printStackTrace();
              }

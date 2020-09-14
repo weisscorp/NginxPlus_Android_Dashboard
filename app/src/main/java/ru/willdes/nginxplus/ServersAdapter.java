@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,10 +36,8 @@ public class ServersAdapter extends RecyclerView.Adapter<ServersAdapter.ServersV
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull final ServersViewHolder serversViewHolder, final int i) {
-        //Log.d(TAG, "onBindViewHolder: called.");
         final ServersModel temp = this.list.get(i);
         serversViewHolder.srvname.setText("       "+temp.getName());
-
         serversViewHolder.twActive.setText(""+temp.getActive());
         serversViewHolder.twRequests.setText(""+temp.getRequests());
         serversViewHolder.twActive.setBackgroundResource(android.R.color.transparent);
@@ -49,7 +46,7 @@ public class ServersAdapter extends RecyclerView.Adapter<ServersAdapter.ServersV
            switch (temp.getState()) {
                case "up": serversViewHolder.ivStat.setColorFilter(context.getResources().getColor(R.color.colorUp));
                    if (temp.getActive()>=2 && temp.getRequests()==0) {
-                       Log.d("Orange", "name: " + temp.getName() + "; id: " + i + " set orange color" );
+                       //Log.d("Orange", "name: " + temp.getName() + "; id: " + i + " set orange color" );
                        serversViewHolder.twActive.setBackgroundResource(R.color.orange);
                        serversViewHolder.twRequests.setBackgroundResource(R.color.orange); }
                    break;
@@ -71,14 +68,13 @@ public class ServersAdapter extends RecyclerView.Adapter<ServersAdapter.ServersV
 
         }
 
-        final int id = i;
         serversViewHolder.ibUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Runnable runnable = new Runnable() {
                     @Override
                     public void run() {
-                        new POSTtoServer(id, temp.getName(), "up");
+                        new POSTtoServer(i, temp.getName(), "up");
                     }
                 };
                 Thread thread = new Thread(runnable);
@@ -91,7 +87,7 @@ public class ServersAdapter extends RecyclerView.Adapter<ServersAdapter.ServersV
                 Runnable runnable = new Runnable() {
                     @Override
                     public void run() {
-                        new POSTtoServer(id, temp.getName(), "down");
+                        new POSTtoServer(i, temp.getName(), "down");
                     }
                 };
                 Thread thread = new Thread(runnable);
@@ -104,7 +100,7 @@ public class ServersAdapter extends RecyclerView.Adapter<ServersAdapter.ServersV
                 Runnable runnable = new Runnable() {
                     @Override
                     public void run() {
-                        new POSTtoServer(id, temp.getName(), "drain");
+                        new POSTtoServer(i, temp.getName(), "drain");
                     }
                 };
             Thread thread = new Thread(runnable);
