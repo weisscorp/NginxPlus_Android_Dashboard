@@ -56,7 +56,11 @@ class upstreams : AppCompatActivity() {
                 val idupstr = cur.getInt(cur.getColumnIndex(COLUMN_ID))
                 button.textSize = 16f
                 button.text = "                                  $name"
+                //button.setBackgroundResource(R.drawable.round_button);
+                //button.setBackgroundColor(getResources().getColor(R.color.colorBackgoundBlack));
                 button.id = idupstr
+                //Log.d(LOG_TAG, "Name: " + name);
+                //Log.d(LOG_TAG, "ID Upstream: " + idupstr);
                 linearLayout.addView(button, lParam)
                 val btn1 = findViewById<View>(idupstr)
                 val intent = Intent(this, servers::class.java)
@@ -64,6 +68,7 @@ class upstreams : AppCompatActivity() {
                     UpstreamName.upstreamName?.idupstr = idupstr
                     UpstreamName.upstreamName?.upstrname = name
                     startActivity(intent)
+                    //Log.d(LOG_TAG, "Go to servers in to upstream: " + name);
                 }
             } while (cur.moveToNext())
             cur.close()
