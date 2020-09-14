@@ -68,7 +68,7 @@ class getJson  //private ListView listView;
     $line
 
     """.trimIndent())
-                    Log.d(LOG_TAG, "Response: > " + line);
+                    //Log.d(LOG_TAG, "Response: > " + line);
                 }
                 val jObject = JSONObject(buffer.toString().trim { it <= ' ' })
                 val keys: Iterator<*> = jObject.keys()
