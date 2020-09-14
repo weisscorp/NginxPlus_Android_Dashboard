@@ -52,6 +52,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="da25237f-7d4f-478d-b534-66c948780984" name="Default Changelist" comment="Create Edit connection function">
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/ru/willdes/nginxplus/AddConnections.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/ru/willdes/nginxplus/AllConnections.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/ru/willdes/nginxplus/DubConnections.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/ru/willdes/nginxplus/EditConnections.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
