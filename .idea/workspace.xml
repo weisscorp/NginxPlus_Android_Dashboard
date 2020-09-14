@@ -56,6 +56,14 @@
       <change afterPath="$PROJECT_DIR$/app/src/main/java/ru/willdes/nginxplus/AllConnections.kt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/app/src/main/java/ru/willdes/nginxplus/DubConnections.kt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/app/src/main/java/ru/willdes/nginxplus/EditConnections.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/ru/willdes/nginxplus/ServersAdapter.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/ru/willdes/nginxplus/ServersModel.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/ru/willdes/nginxplus/UpstreamName.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/ru/willdes/nginxplus/db.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/ru/willdes/nginxplus/getJson.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/ru/willdes/nginxplus/nginxplus.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/ru/willdes/nginxplus/servers.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/ru/willdes/nginxplus/upstreams.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
