@@ -9,11 +9,11 @@ import android.support.v7.widget.Toolbar
 import android.util.Log
 import android.util.TypedValue
 import android.view.*
+import android.view.ContextMenu.ContextMenuInfo
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
-
 
 class AllConnections : AppCompatActivity() {
     var db: db? = null
@@ -97,24 +97,24 @@ class AllConnections : AppCompatActivity() {
             Log.d(LOG_TAG, "ALLconnections call onResume")
     }
 
-    override fun onCreateContextMenu(menu: ContextMenu?, v: View?, menuInfo: ContextMenu.ContextMenuInfo) {
+    override fun onCreateContextMenu(menu: ContextMenu, v: View, menuInfo: ContextMenuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo)
-        menu?.setHeaderTitle("Nginx сервер")
-        v?.id?.let { menu?.add(0, it, 0, "Редактировать") }
-        v?.id?.let { menu?.add(0, it, 0, "Дублировать") }
-        v?.id?.let { menu?.add(0, it, 0, "Обнулить") }
-        v?.id?.let { menu?.add(0, it, 0, "Удалить") }
+        menu.setHeaderTitle("Nginx сервер")
+        menu.add(0, v.id, 0, "Редактировать")
+        menu.add(0, v.id, 0, "Дублировать")
+        menu.add(0, v.id, 0, "Обнулить")
+        menu.add(0, v.id, 0, "Удалить")
     }
 
-    override fun onContextItemSelected(item: MenuItem?): Boolean {
-        if (item?.title === "Редактировать") {
-            edit(item?.itemId)
-        } else if (item?.title === "Дублировать") {
-            dublicate(item?.itemId)
-        } else if (item?.title === "Обнулить") {
-            erase(item?.itemId)
-        } else if (item?.title === "Удалить") {
-            delete(item?.itemId)
+    override fun onContextItemSelected(item: MenuItem): Boolean {
+        if (item.title === "Редактировать") {
+            edit(item.itemId)
+        } else if (item.title === "Дублировать") {
+            dublicate(item.itemId)
+        } else if (item.title === "Обнулить") {
+            erase(item.itemId)
+        } else if (item.title === "Удалить") {
+            delete(item.itemId)
         } else {
             return false
         }
