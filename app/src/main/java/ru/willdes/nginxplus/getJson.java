@@ -111,7 +111,7 @@ public class getJson extends IntentService {
                          {
                              JSONObject onesrvonupstr = peers.getJSONObject(n);
                              int idsrv = onesrvonupstr.getInt("id");
-                             String nameserver = onesrvonupstr.getString("server");
+                             String nameserver = onesrvonupstr.getString("name");
                              String state = onesrvonupstr.getString("state");
                              int active = onesrvonupstr.getInt("active");
                              int requests = onesrvonupstr.getInt("requests");

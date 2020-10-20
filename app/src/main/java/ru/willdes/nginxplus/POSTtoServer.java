@@ -41,13 +41,13 @@ public class POSTtoServer {
         String json = null;
         switch (this.state) {
             case "up":
-                json = "{\"server\":\""+this.srvname+"\",\"down\":false}";
+                json = "{\"down\":false}";
                 break;
             case "down":
-                json = "{\"server\":\""+this.srvname+"\",\"down\":true}";
+                json = "{\"down\":true}";
                 break;
             case "drain":
-                json = "{\"server\":\""+this.srvname+"\",\"drain\":true}";
+                json = "{\"drain\":true}";
                 break;    
         }
 
