@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/NginxPlus_Android_Dashboard.iml" filepath="$PROJECT_DIR$/NginxPlus_Android_Dashboard.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/NginxPlus_Android_Dashboard.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/NginxPlus_Android_Dashboard.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/NginxPlus_Android_Dashboard.iml" filepath="$PROJECT_DIR$/NginxPlus_Android_Dashboard.iml" group="NginxPlus_Android_Dashboard" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="NginxPlus_Android_Dashboard/app" />
     </modules>
   </component>
 </project>
