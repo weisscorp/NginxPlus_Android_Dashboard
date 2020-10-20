@@ -1,29 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:state_pressed="true" >
+    <item android:state_pressed="true">
         <shape>
-            <gradient
-                android:startColor="@color/colorDrainPressed"
-                android:endColor="@color/Black"
-                android:angle="270" />
+            <gradient android:startColor="@color/colorDrainPressed" android:endColor="@color/Black" android:angle="270" />
         </shape>
     </item>
 
-    <item android:state_focused="true" >
+    <item android:state_focused="true">
         <shape>
-            <gradient
-                android:startColor="@color/colorDrainPressed"
-                android:endColor="@color/Black"
-                android:angle="270" />
+            <gradient android:startColor="@color/colorDrainPressed" android:endColor="@color/Black" android:angle="270" />
         </shape>
     </item>
 
     <item>
         <shape>
-            <gradient
-                android:endColor="@color/Black"
-                android:startColor="@color/colorDrain"
-                android:angle="270" />
+            <gradient android:endColor="@color/Black" android:startColor="@color/colorDrain" android:angle="270" />
         </shape>
     </item>
 
