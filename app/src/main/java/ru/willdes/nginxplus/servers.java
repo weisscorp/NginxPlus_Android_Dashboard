@@ -54,44 +54,45 @@ public class servers extends AppCompatActivity {
         super.onDestroy();
         //db.close();
         if (t != null) {
-        t.interrupt();
-        t=null;}
+            t.interrupt();
+            t = null;
+        }
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
-        if (t == null)
-            {
-                refresh_servers();
-            }
-        else
-            {
-                t=null;
-                refresh_servers();
-            }
+        if (t == null) {
+            refresh_servers();
+        } else {
+            t = null;
+            refresh_servers();
+        }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        if (idupstr == 0){
+        if (idupstr == 0) {
             db.close();
             finish();
-            Intent i = new Intent( this , AllConnections.class );
+            Intent i = new Intent(this, AllConnections.class);
             this.startActivity(i);
         }
-        if (t == null){
-            Log.d("onResume","start");
-            refresh_servers();}
+        if (t == null) {
+            Log.d("onResume", "start");
+            refresh_servers();
+        }
 
     }
+
     @Override
     protected void onPause() {
         super.onPause();
         if (t != null) {
             t.interrupt();
-            t=null;}
+            t = null;
+        }
     }
 
     public void action_refresh(MenuItem item) {
@@ -133,10 +134,10 @@ public class servers extends AppCompatActivity {
     public void update_servers() {
         db db = new db(this);
         db.open();
-        if (idupstr == 0){
+        if (idupstr == 0) {
             db.close();
             finish();
-            Intent i = new Intent( this , AllConnections.class );
+            Intent i = new Intent(this, AllConnections.class);
             this.startActivity(i);
         }
         Cursor serverscur = db.getAllDataFromServersByIdupstr(idupstr);
@@ -151,7 +152,7 @@ public class servers extends AppCompatActivity {
             //list.remove(pos);
             list.set(pos, item);
             pos++;
-            } while (serverscur.moveToNext()) ;
+        } while (serverscur.moveToNext());
         adapter.notifyDataSetChanged();
         db.close();
     }
@@ -159,20 +160,25 @@ public class servers extends AppCompatActivity {
     public void refresh_servers() {
         if (t != null) {
             t.interrupt();
-            t = null;}
-        t = new Thread(){
-            @Override public void run(){
-                try{
+            t = null;
+        }
+        t = new Thread() {
+            @Override
+            public void run() {
+                try {
                     while (!isInterrupted()) {
                         Thread.sleep(1000);
                         runOnUiThread(new Runnable() {
-                            @Override public void run() {
+                            @Override
+                            public void run() {
                                 update_servers();
                             }
                         });
                     }
-                } catch (InterruptedException e) { }
-            } };
+                } catch (InterruptedException e) {
+                }
+            }
+        };
         t.start();
     }
 

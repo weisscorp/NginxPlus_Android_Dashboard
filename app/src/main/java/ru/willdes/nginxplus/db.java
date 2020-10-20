@@ -4,8 +4,8 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import static ru.willdes.nginxplus.nginxplus.COLUMN_ACTIVE;
@@ -43,6 +43,7 @@ public class db {
                  int version) {
             super(context, name, factory, version);
         }
+
         @Override
         public void onCreate(SQLiteDatabase db) {
             // создаем таблицу с полями
@@ -85,7 +86,7 @@ public class db {
 
     // закрыть подключение
     public void close() {
-        if (mDBHelper!=null) mDBHelper.close();
+        if (mDBHelper != null) mDBHelper.close();
         //Log.d("DB:", "Connection closed");
     }
 
@@ -95,21 +96,21 @@ public class db {
     }
 
     // получить все данные из таблицы Servers
-    public Cursor getAllDataFromServersByName(int idupstr, String servername ) {
-        return mDB.query(TABLE_SERVERS, null, COLUMN_IDUPSTR + " = '" + idupstr + "' AND " + COLUMN_SERVER +" = '" + servername + "'", null, null, null, null);
+    public Cursor getAllDataFromServersByName(int idupstr, String servername) {
+        return mDB.query(TABLE_SERVERS, null, COLUMN_IDUPSTR + " = '" + idupstr + "' AND " + COLUMN_SERVER + " = '" + servername + "'", null, null, null, null);
     }
 
-    public Cursor getAllDataFromServersByIdupstr(int idupstr ) {
+    public Cursor getAllDataFromServersByIdupstr(int idupstr) {
         return mDB.query(TABLE_SERVERS, null, COLUMN_IDUPSTR + " = '" + idupstr + "'", null, null, null, null);
     }
 
 
     public Cursor getAllDataFromUpstreamsById(int id, String name) {
-        return mDB.query(TABLE_UPSTREAMS, null, COLUMN_IDCONN + " = '" + id + "' AND " + COLUMN_NAME +" = '" + name + "'", null, null, null, null);
+        return mDB.query(TABLE_UPSTREAMS, null, COLUMN_IDCONN + " = '" + id + "' AND " + COLUMN_NAME + " = '" + name + "'", null, null, null, null);
     }
 
     public Cursor getAllDataFromUpstreamsByServerId(int id) {
-        return mDB.query(TABLE_UPSTREAMS, new String[] {COLUMN_ID, COLUMN_IDCONN, COLUMN_NAME}, COLUMN_IDCONN + " = " + id, null, null, null, null);
+        return mDB.query(TABLE_UPSTREAMS, new String[]{COLUMN_ID, COLUMN_IDCONN, COLUMN_NAME}, COLUMN_IDCONN + " = " + id, null, null, null, null);
     }
 
     // добавить запись в Upstreams
@@ -142,15 +143,15 @@ public class db {
         cv.put(COLUMN_ACTIVE, active);
         cv.put(COLUMN_REQUESTS, requests);
         cv.put(COLUMN_REQPSEC, rps);
-        mDB.update(TABLE_SERVERS,  cv, COLUMN_ID + " = ?",
-                new String[] {String.valueOf(idrow)});
+        mDB.update(TABLE_SERVERS, cv, COLUMN_ID + " = ?",
+                new String[]{String.valueOf(idrow)});
     }
 
     public void addNewServer(String sDisplayName, String sAddress, String sPort, String sUser, String sPasswd) {
         ContentValues cv = new ContentValues();
         cv.put(COLUMN_NAME, sDisplayName);
         cv.put(COLUMN_ADDRESS, sAddress);
-        cv.put(COLUMN_PORT,sPort);
+        cv.put(COLUMN_PORT, sPort);
         cv.put(COLUMN_USER, sUser);
         cv.put(COLUMN_PASSWD, sPasswd);
         mDB.insert(TABLE_NAME, null, cv);
@@ -184,8 +185,8 @@ public class db {
         cv.put(COLUMN_PORT, port);
         cv.put(COLUMN_USER, user);
         cv.put(COLUMN_PASSWD, password);
-        mDB.update(TABLE_NAME,  cv, "id = ?",
-                new String[] {String.valueOf(idrow)});
+        mDB.update(TABLE_NAME, cv, "id = ?",
+                new String[]{String.valueOf(idrow)});
     }
 
     public void delUpstreamWhereName(String name) {

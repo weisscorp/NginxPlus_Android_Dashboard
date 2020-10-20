@@ -1,6 +1,6 @@
 package ru.willdes.nginxplus;
 
-        import android.content.Intent;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -14,8 +14,8 @@ import android.widget.Switch;
 import android.widget.Toast;
 
 import static ru.willdes.nginxplus.nginxplus.COLUMN_ADDRESS;
-        import static ru.willdes.nginxplus.nginxplus.COLUMN_ID;
-        import static ru.willdes.nginxplus.nginxplus.COLUMN_NAME;
+import static ru.willdes.nginxplus.nginxplus.COLUMN_ID;
+import static ru.willdes.nginxplus.nginxplus.COLUMN_NAME;
 import static ru.willdes.nginxplus.nginxplus.COLUMN_PASSWD;
 import static ru.willdes.nginxplus.nginxplus.COLUMN_PORT;
 import static ru.willdes.nginxplus.nginxplus.COLUMN_USER;
@@ -55,7 +55,7 @@ public class EditConnections extends AppCompatActivity implements CompoundButton
         if (conUser == "none") {
             s.setChecked(false);
 
-        }else {
+        } else {
             s.setChecked(true);
             edUser.setFocusable(true);
             edUser.setEnabled(true);
@@ -105,6 +105,7 @@ public class EditConnections extends AppCompatActivity implements CompoundButton
 
         db.close();
     }
+
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         //Toast.makeText(this, "The Switch is " + (isChecked ? "on" : "off"),Toast.LENGTH_SHORT).show();
@@ -147,15 +148,12 @@ public class EditConnections extends AppCompatActivity implements CompoundButton
         String sPasswd = edPasswd.getText().toString();
         Intent intent = new Intent();
 
-        if (displayName.getText().toString().equals(""))
-        {
+        if (displayName.getText().toString().equals("")) {
             Toast.makeText(this, "Пустое поле имени", Toast.LENGTH_LONG).show();
-        }
-        else {
+        } else {
             if (edAddress.getText().toString().equals("")) {
                 Toast.makeText(this, "Пустое поле адреса", Toast.LENGTH_LONG).show();
-            } else
-            {
+            } else {
                 db = new db(this);
                 db.open();
                 db.changeRec(id, sDisplayName, sAddress, sPort, sUser, sPasswd);
@@ -171,7 +169,6 @@ public class EditConnections extends AppCompatActivity implements CompoundButton
         setResult(RESULT_CANCELED, intent);
         finish();
     }
-
 
 
 }

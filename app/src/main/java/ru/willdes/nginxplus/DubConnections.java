@@ -51,7 +51,7 @@ public class DubConnections extends AppCompatActivity implements CompoundButton.
         if (conUser == "none") {
             s.setChecked(false);
 
-        }else {
+        } else {
             s.setChecked(true);
             edUser.setFocusable(true);
             edUser.setEnabled(true);
@@ -69,6 +69,7 @@ public class DubConnections extends AppCompatActivity implements CompoundButton.
         }
         db.close();
     }
+
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         //Toast.makeText(this, "The Switch is " + (isChecked ? "on" : "off"),Toast.LENGTH_SHORT).show();
@@ -110,15 +111,12 @@ public class DubConnections extends AppCompatActivity implements CompoundButton.
         String sPasswd = edPasswd.getText().toString();
         Intent intent = new Intent();
 
-        if (displayName.getText().toString().equals(""))
-        {
+        if (displayName.getText().toString().equals("")) {
             Toast.makeText(this, "Пустое поле имени", Toast.LENGTH_LONG).show();
-        }
-        else {
+        } else {
             if (edAddress.getText().toString().equals("")) {
                 Toast.makeText(this, "Пустое поле адреса", Toast.LENGTH_LONG).show();
-            } else
-            {
+            } else {
                 db = new db(this);
                 db.open();
                 db.addNewServer(sDisplayName, sAddress, sPort, sUser, sPasswd);
@@ -134,7 +132,6 @@ public class DubConnections extends AppCompatActivity implements CompoundButton.
         setResult(RESULT_CANCELED, intent);
         finish();
     }
-
 
 
 }

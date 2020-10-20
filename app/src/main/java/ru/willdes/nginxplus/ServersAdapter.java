@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,37 +36,42 @@ public class ServersAdapter extends RecyclerView.Adapter<ServersAdapter.ServersV
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull final ServersViewHolder serversViewHolder, final int i) {
-        //Log.d(TAG, "onBindViewHolder: called.");
         final ServersModel temp = this.list.get(i);
-        serversViewHolder.srvname.setText("       "+temp.getName());
-
-        serversViewHolder.twActive.setText(""+temp.getActive());
-        serversViewHolder.twRequests.setText(""+temp.getRequests());
+        serversViewHolder.srvname.setText(temp.getName());
+        serversViewHolder.twActive.setText("" + temp.getActive());
+        serversViewHolder.twRequests.setText("" + temp.getRequests());
         serversViewHolder.twActive.setBackgroundResource(android.R.color.transparent);
         serversViewHolder.twRequests.setBackgroundResource(android.R.color.transparent);
 
-           switch (temp.getState()) {
-               case "up": serversViewHolder.ivStat.setColorFilter(context.getResources().getColor(R.color.colorUp));
-                   if (temp.getActive()>=2 && temp.getRequests()==0) {
-                       Log.d("Orange", "name: " + temp.getName() + "; id: " + i + " set orange color" );
-                       serversViewHolder.twActive.setBackgroundResource(R.color.orange);
-                       serversViewHolder.twRequests.setBackgroundResource(R.color.orange); }
-                   break;
+        switch (temp.getState()) {
+            case "up":
+                serversViewHolder.ivStat.setColorFilter(context.getResources().getColor(R.color.colorUp));
+                if (temp.getActive() >= 2 && temp.getRequests() == 0) {
+                    //Log.d("Orange", "name: " + temp.getName() + "; id: " + i + " set orange color" );
+                    serversViewHolder.twActive.setBackgroundResource(R.color.orange);
+                    serversViewHolder.twRequests.setBackgroundResource(R.color.orange);
+                }
+                break;
 
-               case "down": serversViewHolder.ivStat.setColorFilter(context.getResources().getColor(R.color.colorDown));
-                   break;
+            case "down":
+                serversViewHolder.ivStat.setColorFilter(context.getResources().getColor(R.color.colorDown));
+                break;
 
-               case "unavail": serversViewHolder.ivStat.setColorFilter(context.getResources().getColor(R.color.colorRemove));
-                   break;
+            case "unavail":
+                serversViewHolder.ivStat.setColorFilter(context.getResources().getColor(R.color.colorRemove));
+                break;
 
-               case "draining": serversViewHolder.ivStat.setColorFilter(context.getResources().getColor(R.color.colorDrain));
-                   break;
+            case "draining":
+                serversViewHolder.ivStat.setColorFilter(context.getResources().getColor(R.color.colorDrain));
+                break;
 
-               case "checking": serversViewHolder.ivStat.setColorFilter(context.getResources().getColor(R.color.colorUp));
-                   break;
+            case "checking":
+                serversViewHolder.ivStat.setColorFilter(context.getResources().getColor(R.color.colorUp));
+                break;
 
-               case "unhealthy": serversViewHolder.ivStat.setColorFilter(context.getResources().getColor(R.color.colorRemove));
-                   break;
+            case "unhealthy":
+                serversViewHolder.ivStat.setColorFilter(context.getResources().getColor(R.color.colorRemove));
+                break;
 
         }
 
@@ -107,8 +111,8 @@ public class ServersAdapter extends RecyclerView.Adapter<ServersAdapter.ServersV
                         new POSTtoServer(id, temp.getName(), "drain");
                     }
                 };
-            Thread thread = new Thread(runnable);
-            thread.start();
+                Thread thread = new Thread(runnable);
+                thread.start();
             }
         });
     }
@@ -118,7 +122,7 @@ public class ServersAdapter extends RecyclerView.Adapter<ServersAdapter.ServersV
         return this.list.size();
     }
 
-    public class ServersViewHolder extends RecyclerView.ViewHolder{
+    public class ServersViewHolder extends RecyclerView.ViewHolder {
         private ImageView ivStat;
         private TextView srvname;
         private TextView twActive;

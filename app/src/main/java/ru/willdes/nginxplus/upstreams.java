@@ -29,10 +29,11 @@ public class upstreams extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_activity_servers, menu);
         return true;
     }
+
     public void action_refresh(MenuItem item) {
         db.close();
         finish();
-        Intent i = new Intent( this , this.getClass() );
+        Intent i = new Intent(this, this.getClass());
         this.startActivity(i);
 
         startService(new Intent(this, getJson.class));
@@ -62,11 +63,11 @@ public class upstreams extends AppCompatActivity {
             cur.moveToFirst();
             do {
                 Button button = new Button(this);
-                button.setGravity(Gravity.LEFT);
+                button.setGravity(Gravity.CENTER);
                 final String name = cur.getString(cur.getColumnIndex(COLUMN_NAME));
                 final int idupstr = cur.getInt(cur.getColumnIndex(COLUMN_ID));
                 button.setTextSize(16);
-                button.setText("                                  " + name);
+                button.setText(name);
                 //button.setBackgroundResource(R.drawable.round_button);
                 //button.setBackgroundColor(getResources().getColor(R.color.colorBackgoundBlack));
                 button.setId(idupstr);
@@ -90,6 +91,7 @@ public class upstreams extends AppCompatActivity {
         }
 
     }
+
     protected void onDestroy() {
         super.onDestroy();
         // закрываем подключение при выходе
@@ -100,10 +102,10 @@ public class upstreams extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if (idconn == 0){
+        if (idconn == 0) {
             db.close();
             finish();
-            Intent i = new Intent( this , AllConnections.class );
+            Intent i = new Intent(this, AllConnections.class);
             this.startActivity(i);
         }
     }

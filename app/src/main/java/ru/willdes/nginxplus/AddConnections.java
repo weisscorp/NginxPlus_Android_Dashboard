@@ -26,6 +26,7 @@ public class AddConnections extends AppCompatActivity implements CompoundButton.
         }
 
     }
+
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         //Toast.makeText(this, "The Switch is " + (isChecked ? "on" : "off"),Toast.LENGTH_SHORT).show();
@@ -68,31 +69,27 @@ public class AddConnections extends AppCompatActivity implements CompoundButton.
         String sPasswd = edPasswd.getText().toString();
         Intent intent = new Intent();
 
-        if (displayName.getText().toString().equals(""))
-        {
+        if (displayName.getText().toString().equals("")) {
             Toast.makeText(this, "Пустое поле имени", Toast.LENGTH_LONG).show();
-        }
-        else {
+        } else {
             if (edAddress.getText().toString().equals("")) {
                 Toast.makeText(this, "Пустое поле адреса", Toast.LENGTH_LONG).show();
-            } else
-            {
+            } else {
                 db = new db(this);
                 db.open();
                 db.addNewServer(sDisplayName, sAddress, sPort, sUser, sPasswd);
                 db.close();
-                }
-                setResult(RESULT_OK, intent);
-                finish();
             }
+            setResult(RESULT_OK, intent);
+            finish();
         }
+    }
 
     public void goBack(View view) {
         Intent intent = new Intent();
         setResult(RESULT_CANCELED, intent);
         finish();
     }
-
 
 
 }

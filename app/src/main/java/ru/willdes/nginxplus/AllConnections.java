@@ -52,8 +52,6 @@ public class AllConnections extends AppCompatActivity {
         });
 
 
-
-
         db = new db(this);
         db.open();
         final Cursor cur = db.getAllDataFromConnections();
@@ -117,9 +115,9 @@ public class AllConnections extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         // TODO: check service started
-        if(startserv==null)
-        //stopService(startserv);
-        Log.d(LOG_TAG, "ALLconnections call onResume");
+        if (startserv == null)
+            //stopService(startserv);
+            Log.d(LOG_TAG, "ALLconnections call onResume");
     }
 
     @Override
@@ -134,15 +132,21 @@ public class AllConnections extends AppCompatActivity {
 
     @Override
     public boolean onContextItemSelected(MenuItem item) {
-        if(item.getTitle()=="Редактировать"){edit(item.getItemId());}
-        else if(item.getTitle()=="Дублировать"){dublicate(item.getItemId());}
-        else if(item.getTitle()=="Обнулить"){erase(item.getItemId());}
-        else if(item.getTitle()=="Удалить"){delete(item.getItemId());}
-        else {return false;}
+        if (item.getTitle() == "Редактировать") {
+            edit(item.getItemId());
+        } else if (item.getTitle() == "Дублировать") {
+            dublicate(item.getItemId());
+        } else if (item.getTitle() == "Обнулить") {
+            erase(item.getItemId());
+        } else if (item.getTitle() == "Удалить") {
+            delete(item.getItemId());
+        } else {
+            return false;
+        }
         return true;
     }
 
-    public void delete(int id){
+    public void delete(int id) {
         db.open();
         Cursor cursor = db.getAllDataFromUpstreamsByServerId(id);
         cursor.moveToFirst();
@@ -156,17 +160,18 @@ public class AllConnections extends AppCompatActivity {
         db.delRec(id);
         db.close();
         finish();
-        Intent i = new Intent( this , this.getClass() );
+        Intent i = new Intent(this, this.getClass());
         this.startActivity(i);
     }
-    public void edit(int id){
+
+    public void edit(int id) {
         Intent intent = new Intent(this, EditConnections.class);
         startActivityForResult(intent.putExtra("id", id), 1);
 
     }
 
 
-    public void erase(int id){
+    public void erase(int id) {
         db.open();
         Cursor cursor = db.getAllDataFromUpstreamsByServerId(id);
         cursor.moveToFirst();
@@ -186,7 +191,7 @@ public class AllConnections extends AppCompatActivity {
     }
 
 
-    public void dublicate(int id){
+    public void dublicate(int id) {
         Intent intent = new Intent(this, DubConnections.class);
         startActivityForResult(intent.putExtra("id", id), 1);
     }
@@ -195,7 +200,7 @@ public class AllConnections extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         finish();
-        Intent i = new Intent( this , this.getClass() );
+        Intent i = new Intent(this, this.getClass());
         this.startActivity(i);
 
     }

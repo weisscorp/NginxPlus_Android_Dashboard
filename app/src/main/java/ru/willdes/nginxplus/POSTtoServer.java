@@ -48,7 +48,7 @@ public class POSTtoServer {
                 break;
             case "drain":
                 json = "{\"drain\":true}";
-                break;    
+                break;
         }
 
         BufferedReader reader = null;
@@ -80,13 +80,13 @@ public class POSTtoServer {
             bufferedWriter.write(json);
             bufferedWriter.flush();
 
-            int status =httpcon.getResponseCode();
+            int status = httpcon.getResponseCode();
             Log.d(LOG_TAG, "Code: > " + status);
 
-            if(status<400){
+            if (status < 400) {
                 reader = new BufferedReader(new InputStreamReader(httpcon.getInputStream()));
                 //read response
-            }else{
+            } else {
                 reader = new BufferedReader(new InputStreamReader(httpcon.getErrorStream()));
                 //read response
             }
