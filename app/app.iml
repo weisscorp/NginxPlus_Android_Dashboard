@@ -24,31 +24,6 @@
         <option name="ASSETS_FOLDER_RELATIVE_PATH" value="/src/main/assets" />
       </configuration>
     </facet>
-    <facet type="kotlin-language" name="Kotlin">
-      <configuration version="3" platform="JVM 1.6" allPlatforms="JVM [1.6]" useProjectSettings="false">
-        <compilerSettings>
-          <option name="additionalArguments" value="-Xallow-no-source-files" />
-        </compilerSettings>
-        <compilerArguments>
-          <option name="destination" value="$MODULE_DIR$/build/tmp/kotlin-classes/release" />
-          <option name="classpath" value="$MODULE_DIR$/build/intermediates/compile_and_runtime_not_namespaced_r_class_jar/release/R.jar:/home/weiss/.gradle/caches/transforms-2/files-2.1/f664ae8dc8296c471fed6a03132113d4/adapters-4.0.1-api.jar:/home/weiss/.gradle/caches/transforms-2/files-2.1/aa695736f77f688833966c63f027aa1f/library-4.0.1-api.jar:/home/weiss/.gradle/caches/modules-2/files-2.1/com.android.databinding/baseLibrary/4.0.1/75023e7dd74bbae2c67cbe5b4011f1c36c1cb7f3/baseLibrary-4.0.1.jar:/home/weiss/.gradle/caches/transforms-2/files-2.1/7662b32b0d9fe78a86a39e10f180e967/constraint-layout-2.0.1-api.jar:/home/weiss/.gradle/caches/transforms-2/files-2.1/baf02689270dfe5a79c995adb461469a/design-28.0.0-api.jar:/home/weiss/.gradle/caches/transforms-2/files-2.1/87019fadeea33796f0f19e17ffcbd0b8/appcompat-v7-28.0.0-api.jar:/home/weiss/.gradle/caches/transforms-2/files-2.1/ae4b21ee7883edc52d4586d29c82bef9/runtime-1.1.1-api.jar:/home/weiss/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.8.6/9180733b7df8542621dc12e21e87557e8c99b8cb/gson-2.8.6.jar:/home/weiss/.gradle/caches/transforms-2/files-2.1/e74fec791ae26490407ecf8b8b4b897a/recyclerview-v7-28.0.0-api.jar:/home/weiss/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-jdk7/1.4.10/30e46450b0bb3dbf43898d2f461be4a942784780/kotlin-stdlib-jdk7-1.4.10.jar:/home/weiss/.gradle/caches/transforms-2/files-2.1/a5c770e1b7dcd2a5067337918fab3c41/viewbinding-4.0.1-api.jar:/home/weiss/.gradle/caches/transforms-2/files-2.1/bc1ee067c895df50fc08622ae8d593ad/support-fragment-28.0.0-api.jar:/home/weiss/.gradle/caches/transforms-2/files-2.1/d7a7c944d303d6d4f46fbca5b2898067/animated-vector-drawable-28.0.0-api.jar:/home/weiss/.gradle/caches/transforms-2/files-2.1/0f23dbbb95b14ab59edf2a8494d2979e/support-core-ui-28.0.0-api.jar:/home/weiss/.gradle/caches/transforms-2/files-2.1/07fcfdc8464a99f03022dac45e6468c3/support-core-utils-28.0.0-api.jar:/home/weiss/.gradle/caches/transforms-2/files-2.1/38538efeb7062eb928f2a6a3ffd64ade/support-vector-drawable-28.0.0-api.jar:/home/weiss/.gradle/caches/transforms-2/files-2.1/acc1fb17bb71819f15b5faad87923564/transition-28.0.0-api.jar:/home/weiss/.gradle/caches/transforms-2/files-2.1/1e0a866125749d1455ce3fd204c94edc/loader-28.0.0-api.jar:/home/weiss/.gradle/caches/transforms-2/files-2.1/31a093ad3c5e9f358060c185a9f0999b/viewpager-28.0.0-api.jar:/home/weiss/.gradle/caches/transforms-2/files-2.1/51c465f26ebce0dc51eeee16cc903c16/coordinatorlayout-28.0.0-api.jar:/home/weiss/.gradle/caches/transforms-2/files-2.1/0a4cfb0c99f39e337aa36566c6cfd8c5/drawerlayout-28.0.0-api.jar:/home/weiss/.gradle/caches/transforms-2/files-2.1/590a00517251a682dd8ec86e700aacbe/slidingpanelayout-28.0.0-api.jar:/home/weiss/.gradle/caches/transforms-2/files-2.1/99c1ee8b594947e3886ea21fc421087e/customview-28.0.0-api.jar:/home/weiss/.gradle/caches/transforms-2/files-2.1/cf2ea53d7022c927cad3a47136244880/swiperefreshlayout-28.0.0-api.jar:/home/weiss/.gradle/caches/transforms-2/files-2.1/967e63ba30136521b38a4ced918f54ed/asynclayoutinflater-28.0.0-api.jar:/home/weiss/.gradle/caches/transforms-2/files-2.1/528a441c2a1109de3f23d2b740c37e38/support-compat-28.0.0-api.jar:/home/weiss/.gradle/caches/transforms-2/files-2.1/658f48adb6d920e18a33befc0e97090b/runtime-1.1.1-api.jar:/home/weiss/.gradle/caches/transforms-2/files-2.1/807f34c3e5b81f64b653a42ebd5b5d7d/versionedparcelable-28.0.0-api.jar:/home/weiss/.gradle/caches/modules-2/files-2.1/com.android.support/collections/28.0.0/c1bcdade4d3cc2836130424a3f3e4182c666a745/collections-28.0.0.jar:/home/weiss/.gradle/caches/transforms-2/files-2.1/f5364b4874ea238871820d1664445841/cursoradapter-28.0.0-api.jar:/home/weiss/.gradle/caches/transforms-2/files-2.1/f876290bd5236ce14c38d34211bda107/cardview-v7-28.0.0-api.jar:/home/weiss/.gradle/caches/modules-2/files-2.1/android.arch.persistence.room/common/1.1.1/8094cc50760b9ac665a8ea76b51888f70042e2b5/common-1.1.1.jar:/home/weiss/.gradle/caches/transforms-2/files-2.1/44958e4b5550ccacf391d1ad9ef463d3/db-framework-1.1.1-api.jar:/home/weiss/.gradle/caches/transforms-2/files-2.1/1b220efe403e4cb34a9dd3e323170d4a/db-1.1.1-api.jar:/home/weiss/.gradle/caches/transforms-2/files-2.1/f40e3dfe1561a6218bae4c4c1cd480fa/livedata-1.1.1-api.jar:/home/weiss/.gradle/caches/transforms-2/files-2.1/f6ef0635c0c068c2daa6ece34c84c17f/livedata-core-1.1.1-api.jar:/home/weiss/.gradle/caches/transforms-2/files-2.1/1b67be3e169b6bfe73f686a848bab043/runtime-1.1.1-api.jar:/home/weiss/.gradle/caches/modules-2/files-2.1/android.arch.lifecycle/common/1.1.1/207a6efae6a3555e326de41f76bdadd9a239cbce/common-1.1.1.jar:/home/weiss/.gradle/caches/modules-2/files-2.1/android.arch.core/common/1.1.1/e55b70d1f5620db124b3e85a7f4bdc7bd48d9f95/common-1.1.1.jar:/home/weiss/.gradle/caches/transforms-2/files-2.1/c1f1b968843d19d2571a8412ea20759b/documentfile-28.0.0-api.jar:/home/weiss/.gradle/caches/transforms-2/files-2.1/04285216e46bcd7e739b896bf417defc/localbroadcastmanager-28.0.0-api.jar:/home/weiss/.gradle/caches/transforms-2/files-2.1/5fa7db0bdd5dac17eba67f8a1a697fba/print-28.0.0-api.jar:/home/weiss/.gradle/caches/transforms-2/files-2.1/97153a938e5c17c49bc877547a4570cb/viewmodel-1.1.1-api.jar:/home/weiss/.gradle/caches/transforms-2/files-2.1/7021af59701a941647eee8dd68876093/interpolator-28.0.0-api.jar:/home/weiss/.gradle/caches/modules-2/files-2.1/com.android.support/support-annotations/28.0.0/ed73f5337a002d1fd24339d5fb08c2c9d9ca60d8/support-annotations-28.0.0.jar:/home/weiss/.gradle/caches/modules-2/files-2.1/com.android.support.constraint/constraint-layout-solver/2.0.1/f5599fed8ee54f793209d7d3986e6792e71f3395/constraint-layout-solver-2.0.1.jar:/home/weiss/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib/1.4.10/ea29e063d2bbe695be13e9d044dcfb0c7add398e/kotlin-stdlib-1.4.10.jar:/home/weiss/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-common/1.4.10/6229be3465805c99db1142ad75e6c6ddeac0b04c/kotlin-stdlib-common-1.4.10.jar:/home/weiss/.gradle/caches/modules-2/files-2.1/org.jetbrains/annotations/13.0/919f0dfe192fb4e063e7dacadee7f8bb9a2672a9/annotations-13.0.jar:/home/weiss/Android/Sdk/platforms/android-28/android.jar:/home/weiss/Android/Sdk/platforms/android-28/optional/org.apache.http.legacy.jar:/home/weiss/Android/Sdk/build-tools/29.0.3/core-lambda-stubs.jar" />
-          <option name="noStdlib" value="true" />
-          <option name="noReflect" value="true" />
-          <option name="moduleName" value="app_release" />
-          <option name="languageVersion" value="1.4" />
-          <option name="apiVersion" value="1.3" />
-          <option name="pluginOptions">
-            <array />
-          </option>
-          <option name="pluginClasspaths">
-            <array />
-          </option>
-          <option name="errors">
-            <ArgumentParseErrors />
-          </option>
-        </compilerArguments>
-      </configuration>
-    </facet>
   </component>
   <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8">
     <output url="file://$MODULE_DIR$/build/intermediates/javac/release/classes" />
@@ -104,16 +79,12 @@
     <orderEntry type="library" scope="TEST" name="Gradle: org.hamcrest:hamcrest-core:1.3@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.databinding:baseLibrary:4.0.1@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.code.gson:gson:2.8.6@jar" level="project" />
-    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.10@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:collections:28.0.0@jar" level="project" />
     <orderEntry type="library" name="Gradle: android.arch.persistence.room:common:1.1.1@jar" level="project" />
     <orderEntry type="library" name="Gradle: android.arch.lifecycle:common:1.1.1@jar" level="project" />
     <orderEntry type="library" name="Gradle: android.arch.core:common:1.1.1@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:support-annotations:28.0.0@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support.constraint:constraint-layout-solver:2.0.1@jar" level="project" />
-    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib:1.4.10@jar" level="project" />
-    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-common:1.4.10@jar" level="project" />
-    <orderEntry type="library" name="Gradle: org.jetbrains:annotations:13.0@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.databinding:adapters:4.0.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.databinding:library:4.0.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support.constraint:constraint-layout:2.0.1@aar" level="project" />
