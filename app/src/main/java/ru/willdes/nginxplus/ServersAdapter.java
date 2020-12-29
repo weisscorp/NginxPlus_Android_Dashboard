@@ -75,14 +75,13 @@ public class ServersAdapter extends RecyclerView.Adapter<ServersAdapter.ServersV
 
         }
 
-        final int id = i;
         serversViewHolder.ibUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Runnable runnable = new Runnable() {
                     @Override
                     public void run() {
-                        new POSTtoServer(id, temp.getName(), "up");
+                        new POSTtoServer(temp.getId(), temp.getName(), "up");
                     }
                 };
                 Thread thread = new Thread(runnable);
@@ -95,7 +94,7 @@ public class ServersAdapter extends RecyclerView.Adapter<ServersAdapter.ServersV
                 Runnable runnable = new Runnable() {
                     @Override
                     public void run() {
-                        new POSTtoServer(id, temp.getName(), "down");
+                        new POSTtoServer(temp.getId(), temp.getName(), "down");
                     }
                 };
                 Thread thread = new Thread(runnable);
@@ -108,7 +107,7 @@ public class ServersAdapter extends RecyclerView.Adapter<ServersAdapter.ServersV
                 Runnable runnable = new Runnable() {
                     @Override
                     public void run() {
-                        new POSTtoServer(id, temp.getName(), "drain");
+                        new POSTtoServer(temp.getId(), temp.getName(), "drain");
                     }
                 };
                 Thread thread = new Thread(runnable);

@@ -3,9 +3,10 @@ package ru.willdes.nginxplus;
 public class ServersModel {
 
     private String name, state;
-    private int active, requests;
+    private int id, active, requests;
 
-    public ServersModel(String name, String state, int active, int requests) {
+    public ServersModel(int id, String name, String state, int active, int requests) {
+        this.id = id;
         this.name = name;
         this.state = state;
         this.active = active;
@@ -15,11 +16,16 @@ public class ServersModel {
     @Override
     public String toString() {
         return "ServersModel{" +
+                "id='" + id + '\'' +
                 "name='" + name + '\'' +
                 ", state='" + state + '\'' +
                 ", active=" + active +
                 ", requests=" + requests +
                 '}';
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getName() {

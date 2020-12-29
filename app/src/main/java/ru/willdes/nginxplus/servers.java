@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static ru.willdes.nginxplus.nginxplus.COLUMN_ACTIVE;
+import static ru.willdes.nginxplus.nginxplus.COLUMN_IDSRV;
 import static ru.willdes.nginxplus.nginxplus.COLUMN_REQPSEC;
 import static ru.willdes.nginxplus.nginxplus.COLUMN_SERVER;
 import static ru.willdes.nginxplus.nginxplus.COLUMN_STATE;
@@ -108,11 +109,12 @@ public class servers extends AppCompatActivity {
             serverscur.moveToFirst();
             int pos = 0;
             do {
+                int id = serverscur.getInt(serverscur.getColumnIndex(COLUMN_IDSRV));
                 String name = serverscur.getString(serverscur.getColumnIndex(COLUMN_SERVER));
                 String state = serverscur.getString(serverscur.getColumnIndex(COLUMN_STATE));
                 int active = serverscur.getInt(serverscur.getColumnIndex(COLUMN_ACTIVE));
                 int requests = serverscur.getInt(serverscur.getColumnIndex(COLUMN_REQPSEC));
-                ServersModel item = new ServersModel(name, state, active, requests);
+                ServersModel item = new ServersModel(id, name, state, active, requests);
                 list.add(pos, item);
                 pos++;
             } while (serverscur.moveToNext());
@@ -144,11 +146,12 @@ public class servers extends AppCompatActivity {
         serverscur.moveToFirst();
         int pos = 0;
         do {
+            int id = serverscur.getInt(serverscur.getColumnIndex(COLUMN_IDSRV));
             final String name = serverscur.getString(serverscur.getColumnIndex(COLUMN_SERVER));
             String state = serverscur.getString(serverscur.getColumnIndex(COLUMN_STATE));
             int active = serverscur.getInt(serverscur.getColumnIndex(COLUMN_ACTIVE));
             int requests = serverscur.getInt(serverscur.getColumnIndex(COLUMN_REQPSEC));
-            ServersModel item = new ServersModel(name, state, active, requests);
+            ServersModel item = new ServersModel(id, name, state, active, requests);
             //list.remove(pos);
             list.set(pos, item);
             pos++;
