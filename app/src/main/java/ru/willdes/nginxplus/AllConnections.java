@@ -4,10 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import androidx.annotation.Nullable;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.ContextMenu;
@@ -19,6 +15,12 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import static ru.willdes.nginxplus.nginxplus.COLUMN_ADDRESS;
 import static ru.willdes.nginxplus.nginxplus.COLUMN_ID;
@@ -43,12 +45,9 @@ public class AllConnections extends AppCompatActivity {
         startserv = new Intent(this, getJson.class);
 
         FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(AllConnections.this, AddConnections.class);
-                startActivityForResult(intent, 1);
-            }
+        fab.setOnClickListener(v -> {
+            Intent intent = new Intent(AllConnections.this, AddConnections.class);
+            startActivityForResult(intent, 1);
         });
 
 
@@ -82,28 +81,15 @@ public class AllConnections extends AppCompatActivity {
                 final View btn1 = findViewById(_id);
                 registerForContextMenu(btn1);
                 final Intent intent = new Intent(this, upstreams.class);
-                btn1.setOnClickListener(new View.OnClickListener() {
-                    public void onClick(View view) {
-                        ServerConnection.getInstance().setIdconn(_id);
-                        ServerConnection.getInstance().setIpaddr(conAddr);
-                        ServerConnection.getInstance().setPort(conPort);
-                        ServerConnection.getInstance().setUser(conUser);
-                        ServerConnection.getInstance().setPassword(conPasswd);
-                        ServerConnection.getInstance().setConname(connname);
-                        startActivity(intent);
-                        //processStartService(getJson.TAG);
-
-                        startService(startserv);
-
-                        Log.d(LOG_TAG, "Start Service getJson");
-                    }
-
-                    private void processStartService(final String tag) {
-                        Intent intent = new Intent(getApplicationContext(), getJson.class);
-                        intent.addCategory(tag);
-                        startService(intent);
-                        Log.d(LOG_TAG, "Call function startService getJson");
-                    }
+                btn1.setOnClickListener(view -> {
+                    ServerConnection.getInstance().setIdconn(_id);
+                    ServerConnection.getInstance().setIpaddr(conAddr);
+                    ServerConnection.getInstance().setPort(conPort);
+                    ServerConnection.getInstance().setUser(conUser);
+                    ServerConnection.getInstance().setPassword(conPasswd);
+                    ServerConnection.getInstance().setConname(connname);
+                    startActivity(intent);
+                    startService(startserv);
                 });
             } while (cur.moveToNext());
             cur.close();
