@@ -173,21 +173,19 @@
         android:paddingBottom="5dp">
 
 
-        <Button
+        <Button style="@style/Widget.AppCompat.Button.Colored"
             android:id="@+id/back_activity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@drawable/round_button"
             android:onClick="goBack"
             android:text="@string/back" />
 
-        <Button
+        <Button style="@style/Widget.AppCompat.Button.Colored"
             android:id="@+id/saveServer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@drawable/round_button"
             android:onClick="addNewServer"
             android:text="@string/saveSrv" />
     </LinearLayout>
