@@ -3,7 +3,6 @@ package ru.willdes.nginxplus;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.Menu;
@@ -13,6 +12,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import static ru.willdes.nginxplus.nginxplus.COLUMN_ID;
 import static ru.willdes.nginxplus.nginxplus.COLUMN_NAME;
@@ -45,8 +47,10 @@ public class upstreams extends AppCompatActivity {
         setContentView(R.layout.activity_upstreams);
         final LinearLayout linearLayout = findViewById(R.id.upstreams);
         final LinearLayout.LayoutParams lParam = new LinearLayout.LayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-        final TextView textView = new TextView(this);
-        textView.setGravity(Gravity.CENTER);
+        Toolbar mActionBarToolbar = findViewById(R.id.toolbar_actionbar);
+        setSupportActionBar(mActionBarToolbar);
+        setTitle(UpstreamName.getUpstreamName().getUpstrname());
+
         setTitle(ServerConnection.getInstance().getConname());
 
 
@@ -54,6 +58,7 @@ public class upstreams extends AppCompatActivity {
         db.open();
         Cursor cur = db.getAllDataFromUpstreamsByServerId(idconn);
         if (cur.getCount() == 0) {
+            TextView textView = new TextView(this);
             textView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
             textView.setGravity(Gravity.CENTER);
             textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(R.dimen.result_font));
