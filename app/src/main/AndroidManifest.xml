@@ -23,10 +23,14 @@
         <activity
             android:name=".servers"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".upstreams" />
-        <activity android:name=".AddConnections" />
-        <activity android:name=".EditConnections" />
-        <activity android:name=".DubConnections" />
+        <activity android:name=".upstreams"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".AddConnections"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".EditConnections"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".DubConnections"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".AllConnections"
             android:label="@string/title_activity_connections"

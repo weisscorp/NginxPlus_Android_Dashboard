@@ -1,14 +1,17 @@
 package ru.willdes.nginxplus;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import static ru.willdes.nginxplus.nginxplus.COLUMN_ADDRESS;
 import static ru.willdes.nginxplus.nginxplus.COLUMN_NAME;
@@ -26,12 +29,11 @@ public class DubConnections extends AppCompatActivity implements CompoundButton.
         setContentView(R.layout.activity_add_connections);
         Intent getintent = getIntent();
         int id = getintent.getIntExtra("id", 0);
-        setTitle("Edit " + id);
         db = new db(this);
         db.open();
         Cursor cursor = db.getConnWhereId(id);
         cursor.moveToFirst();
-        Switch s = findViewById(R.id.auth);
+        @SuppressLint("UseSwitchCompatOrMaterialCode") Switch s = findViewById(R.id.auth);
 
         EditText displayName = findViewById(R.id.displayName);
         EditText edAddress = findViewById(R.id.edAddress);
@@ -44,11 +46,15 @@ public class DubConnections extends AppCompatActivity implements CompoundButton.
         String conUser = cursor.getString(cursor.getColumnIndex(COLUMN_USER));
         String conPasswd = cursor.getString(cursor.getColumnIndex(COLUMN_PASSWD));
         String conName = cursor.getString(cursor.getColumnIndex(COLUMN_NAME));
+        Toolbar mActionBarToolbar = findViewById(R.id.toolbar_actionbar);
+        setSupportActionBar(mActionBarToolbar);
+        setTitle("Duplicate " + conName);
+
 
         displayName.setText(conName);
         edAddress.setText(conAddr);
         edPort.setText(conPort);
-        if (conUser == "none") {
+        if (conUser.equals("none")) {
             s.setChecked(false);
 
         } else {

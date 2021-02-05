@@ -3,16 +3,14 @@
     android:id="@+id/linearlayoutUpstreams"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorBackgoundBlack"
     android:orientation="vertical">
 
     <include layout="@layout/toolbar" />
-
 
     <LinearLayout
         android:id="@+id/upstreams"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorBackgoundBlack"
-        android:orientation="vertical"></LinearLayout>
-
+        android:orientation="vertical" />
 </LinearLayout>

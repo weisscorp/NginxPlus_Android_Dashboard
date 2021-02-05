@@ -1,35 +1,33 @@
 package ru.willdes.nginxplus;
-
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.Toast;
-
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 public class AddConnections extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener {
-
     db db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_connections);
+        Toolbar mActionBarToolbar = findViewById(R.id.toolbar_actionbar);
+        setSupportActionBar(mActionBarToolbar);
         setTitle("Add new connection");
         Switch s = findViewById(R.id.auth);
 
         if (s != null) {
             s.setOnCheckedChangeListener(this);
         }
-
     }
 
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-        //Toast.makeText(this, "The Switch is " + (isChecked ? "on" : "off"),Toast.LENGTH_SHORT).show();
         if (isChecked) {
             final EditText edUser = findViewById(R.id.edUser);
             final EditText edPasswd = findViewById(R.id.edPasswd);

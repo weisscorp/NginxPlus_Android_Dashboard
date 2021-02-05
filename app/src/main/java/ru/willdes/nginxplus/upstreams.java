@@ -20,10 +20,8 @@ import static ru.willdes.nginxplus.nginxplus.COLUMN_ID;
 import static ru.willdes.nginxplus.nginxplus.COLUMN_NAME;
 
 public class upstreams extends AppCompatActivity {
-
     final String LOG_TAG = "myLogs";
     final int idconn = ServerConnection.getInstance().getIdconn();
-
     db db;
 
     @Override
@@ -37,7 +35,6 @@ public class upstreams extends AppCompatActivity {
         finish();
         Intent i = new Intent(this, this.getClass());
         this.startActivity(i);
-
         startService(new Intent(this, getJson.class));
     }
 
@@ -49,10 +46,7 @@ public class upstreams extends AppCompatActivity {
         final LinearLayout.LayoutParams lParam = new LinearLayout.LayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         Toolbar mActionBarToolbar = findViewById(R.id.toolbar_actionbar);
         setSupportActionBar(mActionBarToolbar);
-        setTitle(UpstreamName.getUpstreamName().getUpstrname());
-
         setTitle(ServerConnection.getInstance().getConname());
-
 
         db = new db(this);
         db.open();
@@ -73,28 +67,18 @@ public class upstreams extends AppCompatActivity {
                 final int idupstr = cur.getInt(cur.getColumnIndex(COLUMN_ID));
                 button.setTextSize(16);
                 button.setText(name);
-                //button.setBackgroundResource(R.drawable.round_button);
-                //button.setBackgroundColor(getResources().getColor(R.color.colorBackgoundBlack));
                 button.setId(idupstr);
-                //Log.d(LOG_TAG, "Name: " + name);
-                //Log.d(LOG_TAG, "ID Upstream: " + idupstr);
-
-
                 linearLayout.addView(button, lParam);
                 View btn1 = findViewById(idupstr);
                 final Intent intent = new Intent(this, servers.class);
-                btn1.setOnClickListener(new View.OnClickListener() {
-                    public void onClick(View view) {
-                        UpstreamName.getUpstreamName().setIdupstr(idupstr);
-                        UpstreamName.getUpstreamName().setUpstrname(name);
-                        startActivity(intent);
-                        //Log.d(LOG_TAG, "Go to servers in to upstream: " + name);
-                    }
+                btn1.setOnClickListener(view -> {
+                    UpstreamName.getUpstreamName().setIdupstr(idupstr);
+                    UpstreamName.getUpstreamName().setUpstrname(name);
+                    startActivity(intent);
                 });
             } while (cur.moveToNext());
             cur.close();
         }
-
     }
 
     protected void onDestroy() {

@@ -5,6 +5,8 @@
     android:layout_height="fill_parent"
     android:background="@color/colorBackgoundBlack"
     android:orientation="vertical">
+    <include layout="@layout/toolbar" />
+
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -189,4 +191,11 @@
             android:onClick="addNewServer"
             android:text="@string/saveSrv" />
     </LinearLayout>
+
+    <Button style="@style/Widget.AppCompat.Button.Colored"
+        android:id="@+id/clean"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        android:text="@string/clean" />
 </LinearLayout>
