@@ -1,80 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/LLserveritem"
-    android:layout_width="wrap_content"
+    android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:background="@android:color/transparent">
-
-    <ImageButton
-        android:id="@+id/ibUp"
-        android:layout_width="100dp"
-        android:layout_height="35dp"
-        android:layout_below="@+id/srvname"
-        android:layout_toStartOf="@+id/ibDown"
-        android:background="@drawable/button_up"
-        app:srcCompat="@drawable/srv_action_up" />
-
-
-    <ImageButton
-        android:id="@+id/ibDown"
-        android:layout_width="100dp"
-        android:layout_height="35dp"
-        android:layout_below="@+id/srvname"
-        android:layout_toStartOf="@+id/ibDrain"
-        android:background="@drawable/button_down"
-        app:srcCompat="@drawable/srv_action_stop" />
-
-    <ImageButton
-        android:id="@+id/ibDrain"
-        android:layout_width="100dp"
-        android:layout_height="35dp"
-        android:layout_below="@+id/srvname"
-        android:layout_alignParentRight="true"
-        android:background="@drawable/button_drain"
-        app:srcCompat="@drawable/srv_action_drain" />
-
-    <ImageView
-        android:id="@+id/ivStat"
-        android:layout_width="16dp"
-        android:layout_height="35dp"
-        android:layout_below="@+id/srvname"
-        android:src="@color/colorDrain"></ImageView>
+    android:background="@android:color/transparent"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/srvname"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/ibUp"
-        android:layout_alignParentTop="true"
+        android:layout_width="fill_parent"
+        android:layout_height="19sp"
         android:layout_gravity="center_vertical"
         android:background="@android:color/transparent"
-        android:gravity="start"
+        android:gravity="center"
         android:hapticFeedbackEnabled="false"
         android:text="имя сервера"
         android:textColor="@color/colorBackgoundWhite"
         android:textSize="14sp" />
 
-    <TextView
-        android:id="@+id/twActive"
-        android:layout_width="90dp"
+    <LinearLayout
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/srvname"
-        android:layout_toEndOf="@+id/ivStat"
-        android:background="@color/colorAccent"
-        android:text="Active"
-        android:textColor="@color/colorBackgoundWhite"
-        android:textSize="13sp" />
+        android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/twRequests"
-        android:layout_width="90dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/twActive"
-        android:layout_alignBottom="@+id/ivStat"
-        android:layout_toEndOf="@+id/ivStat"
-        android:background="@android:color/transparent"
-        android:text="Requests"
-        android:textColor="@color/colorBackgoundWhite"
-        android:textSize="13sp" />
-</RelativeLayout>
+        <ImageView
+            android:id="@+id/ivStat"
+            android:layout_width="16dp"
+            android:layout_height="35dp"
+            android:src="@color/colorDrain"/>
+
+        <LinearLayout
+            android:layout_width="30dp"
+            android:layout_weight="0.1"
+            android:layout_height="fill_parent"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/twActive"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorAccent"
+                android:text="Active"
+                android:textColor="@color/colorBackgoundWhite"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/twRequests"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:text="Requests"
+                android:textColor="@color/colorBackgoundWhite"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/ibUp"
+            android:layout_width="0dp"
+            android:layout_weight="0.2"
+            android:layout_height="35dp"
+            android:background="@drawable/button_up"
+            android:src="@drawable/srv_action_up" />
+
+
+        <ImageButton
+            android:id="@+id/ibDown"
+            android:layout_width="0dp"
+            android:layout_weight="0.2"
+            android:layout_height="35dp"
+            android:background="@drawable/button_down"
+            android:src="@drawable/srv_action_stop" />
+
+        <ImageButton
+            android:id="@+id/ibDrain"
+            android:layout_width="0dp"
+            android:layout_weight="0.2"
+            android:layout_height="35dp"
+            android:background="@drawable/button_drain"
+            android:src="@drawable/srv_action_drain" />
+
+    </LinearLayout>
+</LinearLayout>
