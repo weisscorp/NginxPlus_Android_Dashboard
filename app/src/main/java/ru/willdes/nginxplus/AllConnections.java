@@ -10,7 +10,6 @@ import android.view.ContextMenu;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -39,11 +38,11 @@ public class AllConnections extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_connections);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        Toolbar mActionBarToolbar = findViewById(R.id.toolbar_actionbar);
+        setSupportActionBar(mActionBarToolbar);
+        setTitle(R.string.title_activity_connections);
         LinearLayout linearLayout = findViewById(R.id.allconnections);
         startserv = new Intent(this, getJson.class);
-
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(v -> {
             Intent intent = new Intent(AllConnections.this, AddConnections.class);
@@ -56,7 +55,6 @@ public class AllConnections extends AppCompatActivity {
         final Cursor cur = db.getAllDataFromConnections();
         if (cur.getCount() == 0) {
             TextView textView = new TextView(this);
-            textView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
             textView.setGravity(Gravity.CENTER);
             textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(R.dimen.result_font));
             textView.setText(R.string.empty_servers);
@@ -64,24 +62,21 @@ public class AllConnections extends AppCompatActivity {
         } else {
             cur.moveToFirst();
             do {
-                LinearLayout.LayoutParams lParam = new LinearLayout.LayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-                Button button = new Button(this);
-                button.setGravity(Gravity.CENTER);
-                button.setTextSize(16);
-                final String connname = cur.getString(cur.getColumnIndex(COLUMN_NAME));
-                button.setText(connname);
-                //button.setBackgroundResource(R.drawable.round_button);
                 final int _id = cur.getInt(cur.getColumnIndex("id"));
+                final String connname = cur.getString(cur.getColumnIndex(COLUMN_NAME));
                 final String conAddr = cur.getString(cur.getColumnIndex(COLUMN_ADDRESS));
                 final String conPort = cur.getString(cur.getColumnIndex(COLUMN_PORT));
                 final String conUser = cur.getString(cur.getColumnIndex(COLUMN_USER));
                 final String conPasswd = cur.getString(cur.getColumnIndex(COLUMN_PASSWD));
+                Button button = new Button(this);
+                button.setGravity(Gravity.CENTER);
+                button.setTextSize(16);
+                button.setText(connname);
                 button.setId(_id);
-                linearLayout.addView(button, lParam);
-                final View btn1 = findViewById(_id);
-                registerForContextMenu(btn1);
+                linearLayout.addView(button);
+                registerForContextMenu(button);
                 final Intent intent = new Intent(this, upstreams.class);
-                btn1.setOnClickListener(view -> {
+                button.setOnClickListener(view -> {
                     ServerConnection.getInstance().setIdconn(_id);
                     ServerConnection.getInstance().setIpaddr(conAddr);
                     ServerConnection.getInstance().setPort(conPort);

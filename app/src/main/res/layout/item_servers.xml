@@ -11,11 +11,9 @@
         android:layout_width="fill_parent"
         android:layout_height="19sp"
         android:layout_gravity="center_vertical"
-        android:background="@android:color/transparent"
         android:gravity="center"
         android:hapticFeedbackEnabled="false"
         android:text="имя сервера"
-        android:textColor="@color/colorBackgoundWhite"
         android:textSize="14sp" />
 
     <LinearLayout
@@ -38,18 +36,14 @@
                 android:id="@+id/twActive"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/colorAccent"
                 android:text="Active"
-                android:textColor="@color/colorBackgoundWhite"
                 android:textSize="13sp" />
 
             <TextView
                 android:id="@+id/twRequests"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
                 android:text="Requests"
-                android:textColor="@color/colorBackgoundWhite"
                 android:textSize="13sp" />
         </LinearLayout>
 

@@ -1,26 +1,14 @@
 <resources>
-
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Base.V14.Theme.MaterialComponents">
-
-        <!-- Customize your theme here. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorAccent">@color/colorPrimary1</item>
         <item name="android:textAllCaps">false</item>
     </style>
-    <style name="Widget.AppCompat.Button" parent="Widget.MaterialComponents.Button">
-        <item name="backgroundTint">@color/colorPrimary</item>
-    </style>
-
-
 
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
-
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar" />
-
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.MaterialComponents.Dark" />
-
 </resources>

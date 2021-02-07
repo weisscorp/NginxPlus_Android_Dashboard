@@ -3,8 +3,8 @@
     android:id="@+id/leaneraddconn"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@color/colorBackgoundBlack"
     android:orientation="vertical">
+
     <include layout="@layout/toolbar" />
 
 
@@ -20,9 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@color/colorBackgoundBlack"
-            android:text="@string/DisplayName"
-            android:textColor="@android:color/white" />
+            android:text="@string/DisplayName"/>
 
         <EditText
             android:id="@+id/displayName"
@@ -47,18 +45,15 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@color/colorBackgoundBlack"
             android:text="@string/ip_or_hostname"
-            android:textColor="@android:color/white" />
+            />
 
         <TextView
             android:id="@+id/txtPort"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@color/colorBackgoundBlack"
-            android:text="@string/port"
-            android:textColor="@android:color/white" />
+            android:text="@string/port" />
     </LinearLayout>
 
     <LinearLayout
@@ -92,8 +87,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.1"
-            android:text=":"
-            android:textColor="@color/Black" />
+            android:text=":"/>
     </LinearLayout>
 
     <LinearLayout
@@ -124,9 +118,7 @@
             android:layout_width="40dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@color/colorBackgoundBlack"
-            android:text="@string/user"
-            android:textColor="@android:color/white" />
+            android:text="@string/user" />
 
         <EditText
             android:id="@+id/edUser"
@@ -152,9 +144,7 @@
             android:layout_width="40dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@color/colorBackgoundBlack"
-            android:text="@string/password"
-            android:textColor="@android:color/white" />
+            android:text="@string/password"/>
 
         <EditText
             android:id="@+id/edPasswd"
@@ -171,34 +161,52 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp">
+        android:gravity="center">
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
 
-        <Button style="@style/Widget.AppCompat.Button.Colored"
+        <Button style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:id="@+id/back_activity"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_margin="4dp"
             android:layout_weight="1"
             android:onClick="goBack"
-            android:background="@color/colorPrimary"
             android:text="@string/back" />
-
-        <Button style="@style/Widget.AppCompat.Button.Colored"
-            android:id="@+id/saveServer"
+        </LinearLayout>
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+        <Button
+            android:id="@+id/saveServer"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_margin="4dp"
             android:layout_weight="1"
             android:onClick="addNewServer"
-            android:background="@color/colorPrimary"
             android:text="@string/saveSrv" />
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+    <Button  style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:id="@+id/clean"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:visibility="invisible"
+        android:textColor="@color/colorRemove"
+        android:text="@string/clean" />
     </LinearLayout>
 
-    <Button style="@style/Widget.AppCompat.Button.Colored"
-        android:id="@+id/clean"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="invisible"
-        android:background="@color/colorPrimary"
-        android:text="@string/clean" />
 </LinearLayout>
