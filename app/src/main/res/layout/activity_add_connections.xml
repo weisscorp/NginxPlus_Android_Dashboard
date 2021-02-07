@@ -181,6 +181,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="goBack"
+            android:background="@color/colorPrimary"
             android:text="@string/back" />
 
         <Button style="@style/Widget.AppCompat.Button.Colored"
@@ -189,6 +190,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="addNewServer"
+            android:background="@color/colorPrimary"
             android:text="@string/saveSrv" />
     </LinearLayout>
 
@@ -197,5 +199,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="invisible"
+        android:background="@color/colorPrimary"
         android:text="@string/clean" />
 </LinearLayout>
